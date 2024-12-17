@@ -1,80 +1,118 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Jacqueline Radding</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-  
-h1 {
-  color: white;
-  text-shadow: 2px 2px 4px #000000;
-}
-  p {
-  color: white;
-  text-shadow: 2px 2px 4px #000000;
-}
-</style>
-body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
-.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
-.fa-anchor,.fa-coffee {font-size:200px}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jacqueline Radding | Electrical Engineer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+        }
+        header {
+            background-color: #004b87;
+            color: white;
+            padding: 1em 0;
+            text-align: center;
+        }
+        nav {
+            background-color: #ddd;
+            text-align: center;
+            padding: 0.5em 0;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #333;
+        }
+        .container {
+            width: 90%;
+            margin: 0 auto;
+            padding: 1em 0;
+        }
+        h1, h2 {
+            color: #004b87;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+            margin-top: 2em;
+        }
+        .project {
+            margin-bottom: 1.5em;
+            padding: 1em;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+    </style>
 </head>
 <body>
+    <!-- Header -->
+    <header>
+        <h1>Jacqueline Radding</h1>
+        <p>Electrical Engineer | Cal Poly Master's Student | IEEE President</p>
+    </header>
 
-  <style>
-body {
-  background-image: url('https://images.unsplash.com/photo-1592659762303-90081d34b277?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGNifGVufDB8fDB8fHww&w=1000&q=80');
-}
-</style>
+    <!-- Navigation -->
+    <nav>
+        <a href="#about">About Me</a>
+        <a href="#projects">Projects & Publications</a>
+        <a href="#contact">Contact</a>
+    </nav>
 
-<!-- Navbar -->
-<div class="w3-top">
-  <div class="w3-bar w3-white w3-card w3-left-align w3-large">
-    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-    <a href="request.html" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
-    <a href="calendar.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Project Hub</a>
+    <!-- About Me Section -->
+    <div id="about" class="container">
+        <h2>About Me</h2>
+        <p>Hello! I'm Jacqueline Radding, a Master's student in Electrical Engineering at Cal Poly. I specialize in power electronics, VLSI design, and machine learning. Alongside my studies, I serve as the President of Cal Poly IEEE and work as a Resident Advisor, mentoring fellow students. My passion lies in developing smart technologies and advancing research in autonomous systems.</p>
+        <p>Explore my work and publications below to see my contributions to engineering and innovation!</p>
+    </div>
 
-  </div>
+    <!-- Projects & Publications Section -->
+    <div id="projects" class="container">
+        <h2>Projects & Publications</h2>
+        
+        <!-- Project 1 -->
+        <div class="project">
+            <h3>Development of a Laboratory Course in Industrial Power and Control</h3>
+            <p><strong>Publication:</strong> ASEE PSW Conference 2024, Las Vegas, NV.</p>
+            <p>This paper discusses the design and implementation of an industrial power and control lab for Electrical Engineers.</p>
+        </div>
+        
+        <!-- Project 2 -->
+        <div class="project">
+            <h3>Texas Instruments Internship: Automated Voltage Spike Checker</h3>
+            <p>Designed and automated PCB tests, reducing manual labor by 50% and improving program efficiency.</p>
+        </div>
 
-  <!-- Navbar on small screens -->
-  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
-    <a href="request.html" class="w3-bar-item w3-button w3-padding-large">Home</a>
-    <a href="calendar.html" class="w3-bar-item w3-button w3-padding-large">Project Hub</a>
+        <!-- Project 3 -->
+        <div class="project">
+            <h3>Hewlett Packard Enterprise: FCC Compliance Simulation</h3>
+            <p>Simulated radiated emissions and implemented solutions to achieve FCC compliance in hybrid cloud products.</p>
+        </div>
+        
+        <!-- Project 4 -->
+        <div class="project">
+            <h3>Master Thesis (In Progress): Connected Autonomous Vehicles</h3>
+            <p>Harmonizing motion and communication using machine learning to optimize V2V systems.</p>
+        </div>
+    </div>
 
-  </div>
-</div>
+    <!-- Contact Section -->
+    <div id="contact" class="container">
+        <h2>Contact</h2>
+        <p>Feel free to reach out to me for collaborations, questions, or networking!</p>
+        <p>Email: <a href="mailto:jgraddin@calpoly.edu">jgraddin@calpoly.edu</a></p>
+        <p>Portfolio: <a href="https://portfolium.com/JacquelineRadd" target="_blank">My Portfolio</a></p>
+    </div>
 
-<!-- Header -->
-
-<header class="w3-container w3-bluegray w3-center" style="padding:128px 16px">
-  <h1 style="color:#FFFFFF" class="w3-margin w3-jumbo">Jacqueline Radding</h1>
-  <p style="color:#FFFFFF" class="w3-xlarge">Electrical Engineering Student at Cal Poly San Luis Obispo, President of Cal Poly IEEE, and Electrical Engineer at Cal Poly CubeSat</p>
-  
-<div>
-  <center>
-  <img src="/InternScheduler/images/profilepic.PNG" alt="Boss" style="width:15%" class="w3-circle w3-hover-opacity">
-
-  </center>
-</div>
-</header>
-
-<center>
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vT-2P58iGRh28q08OwgY_Idt0V_2yXCtSMoqDCTcyo-yWZwLL3w0aR9ovXAktAafvv4maoZj9TN-VMW/embed?start=false&loop=true&delayms=5000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-</center>
-</div>
-  
-</div>
-
-
-</body>
-</html>
-
-
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Jacqueline Radding | Designed for showcasing innovation and leadership.</p>
+    </footer>
 </body>
 </html>
