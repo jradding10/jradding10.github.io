@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jacqueline Radding | Electrical Engineer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+        }
+        header {
+            background-color: #004b87;
+            color: white;
+            padding: 1em 0;
+            text-align: center;
+        }
+        nav {
+            background-color: #ddd;
+            text-align: center;
+            padding: 0.5em 0;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #333;
+        }
+        .container {
+            width: 90%;
+            margin: 0 auto;
+            padding: 1em 0;
+        }
+        h1, h2 {
+            color: #004b87;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+            margin-top: 2em;
+        }
+        .project {
+            margin-bottom: 1.5em;
+            padding: 1em;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Jacqueline Radding</h1>
+        <p>Electrical Engineer | Cal Poly Master's Student | IEEE President</p>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#about">About Me</a>
+        <a href="#projects">Projects & Publications</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <!-- About Me Section -->
+    <div id="about" class="container">
+        <h2>About Me</h2>
+        <p>Hello! I'm Jacqueline Radding, a Master's student in Electrical Engineering at Cal Poly. I specialize in power electronics, VLSI design, and machine learning. Alongside my studies, I serve as the President of Cal Poly IEEE and work as a Resident Advisor, mentoring fellow students. My passion lies in developing smart technologies and advancing research in autonomous systems.</p>
+        <p>Explore my work and publications below to see my contributions to engineering and innovation!</p>
+    </div>
+
+    <!-- Projects & Publications Section -->
+    <div id="projects" class="container">
+        <h2>Projects & Publications</h2>
+        
+        <!-- Project 1 -->
+        <div class="project">
+            <h3>Development of a Laboratory Course in Industrial Power and Control</h3>
+            <p><strong>Publication:</strong> ASEE PSW Conference 2024, Las Vegas, NV.</p>
+            <p>This paper discusses the design and implementation of an industrial power and control lab for Electrical Engineers.</p>
+        </div>
+        
+        <!-- Project 2 -->
+        <div class="project">
+            <h3>Texas Instruments Internship: Automated Voltage Spike Checker</h3>
+            <p>Designed and automated PCB tests, reducing manual labor by 50% and improving program efficiency.</p>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project">
+            <h3>Hewlett Packard Enterprise: FCC Compliance Simulation</h3>
+            <p>Simulated radiated emissions and implemented solutions to achieve FCC compliance in hybrid cloud products.</p>
+        </div>
+        
+        <!-- Project 4 -->
+        <div class="project">
+            <h3>Master Thesis (In Progress): Connected Autonomous Vehicles</h3>
+            <p>Harmonizing motion and communication using machine learning to optimize V2V systems.</p>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div id="contact" class="container">
+        <h2>Contact</h2>
+        <p>Feel free to reach out to me for collaborations, questions, or networking!</p>
+        <p>Email: <a href="mailto:jgraddin@calpoly.edu">jgraddin@calpoly.edu</a></p>
+        <p>Portfolio: <a href="https://portfolium.com/JacquelineRadd" target="_blank">My Portfolio</a></p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Jacqueline Radding | Designed for showcasing innovation and leadership.</p>
+    </footer>
+</body>
+</html>
