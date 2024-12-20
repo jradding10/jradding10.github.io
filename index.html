@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jacqueline Radding | Electrical Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         /* General Reset */
         * {
@@ -13,237 +14,158 @@
         }
 
         body {
-            font-family: 'Roboto', sans-serif;
-            color: #333;
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            color: #212529;
             line-height: 1.6;
-            background-color: #f9f9f9;
-            margin: 0;
         }
 
         header {
-            background: linear-gradient(90deg, #004b87, #0073e6);
+            background: #004b87;
             color: white;
-            padding: 2em 0;
             text-align: center;
+            padding: 4em 1em;
         }
 
         header h2 {
-            font-size: 2.5em;
-            margin-bottom: 0.5em;
-            color: white;
+            font-size: 2.8em;
+            font-weight: 700;
         }
 
         header p {
             font-size: 1.2em;
-            font-style: italic;
+            margin-top: 0.5em;
+            opacity: 0.9;
         }
 
         nav {
-            background: #004b87;
-            padding: 1em 0;
+            position: sticky;
+            top: 0;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        nav ul {
             display: flex;
             justify-content: center;
+            padding: 1em;
         }
 
-        nav a {
-            color: white;
+        nav ul li {
+            list-style: none;
+            margin: 0 1em;
+        }
+
+        nav ul li a {
             text-decoration: none;
-            margin: 0 15px;
+            color: #333;
             font-size: 1.1em;
-            transition: color 0.3s;
+            font-weight: 600;
+            padding: 0.5em 1em;
+            transition: color 0.3s, background 0.3s;
         }
 
-        nav a:hover {
-            color: #ffdd57;
+        nav ul li a:hover {
+            color: white;
+            background: #004b87;
+            border-radius: 5px;
         }
 
         .container {
-            width: 90%;
             max-width: 1200px;
             margin: 2em auto;
-            padding: 1em;
+            padding: 2em;
             background: white;
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
 
         .container img {
-            float: left;
-            margin-right: 1em;
-            margin-bottom: 1em;
-            border-radius: 8px;
-            max-width: 150px;
-            height: auto;
-        }
-
-        h2 {
-            color: #004b87;
+            max-width: 100%;
+            border-radius: 10px;
             margin-bottom: 1em;
         }
 
         .project {
-            padding: 1em;
-            margin-bottom: 1.5em;
+            padding: 1.5em;
             border: 1px solid #ddd;
             border-radius: 8px;
-            background-color: #f9f9f9;
-            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 2em;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
         }
 
         .project:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            transform: scale(1.02);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
         }
 
         .project h3 {
+            color: #004b87;
             margin-bottom: 0.5em;
-            color: #0073e6;
+            font-weight: 600;
         }
 
         footer {
+            text-align: center;
             background: #333;
             color: white;
-            text-align: center;
-            padding: 1em 0;
+            padding: 1.5em 0;
+            margin-top: 2em;
         }
 
         footer p {
-            margin: 0;
             font-size: 0.9em;
         }
 
-        a {
-            color: #0073e6;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        a:hover {
-            color: #004b87;
-        }
-
-        /* Responsive Design */
         @media (max-width: 768px) {
-            nav a {
-                display: block;
-                margin: 10px 0;
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li {
+                margin-bottom: 0.5em;
             }
 
             header h2 {
                 font-size: 2em;
             }
-
-            header p {
-                font-size: 1em;
-            }
-
-            .container {
-                padding: 1em;
-            }
-
-            .container img {
-                float: none;
-                display: block;
-                margin: 0 auto 1em auto;
-                max-width: 100%;
-            }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <h2>Jacqueline Radding</h2>
         <p>Electrical Engineer | Cal Poly Master's Student | IEEE President</p>
     </header>
 
-    <!-- Navigation -->
     <nav>
-        <a href="#about">About Me</a>
-        <a href="#experience">Experience</a>
-        <a href="#projects">Projects</a>
-        <a href="#blog">Blog</a>
-        <a href="#contact">Contact</a>
+        <ul>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
     </nav>
 
-    <!-- About Me Section -->
-    <div id="about" class="container">
+    <section id="about" class="container">
         <h2>About Me</h2>
         <img src="/images/aboutmep.jpg" alt="Jacqueline Radding">
-        <p>Hello! I'm Jacqueline Radding, a Master's student in Electrical Engineering at Cal Poly. I specialize in power electronics, VLSI design, and machine learning. Alongside my studies, I serve as the President of Cal Poly IEEE and work as a Resident Advisor, mentoring fellow students. My passion lies in developing smart technologies and advancing research in autonomous systems.</p>
-        <p>Explore my work and publications below to see my contributions to engineering and innovation!</p>
-    </div>
+        <p>Hello! I'm Jacqueline Radding, a Master's student in Electrical Engineering at Cal Poly...</p>
+    </section>
 
-    <!-- Experience & Publications Section -->
-    <div id="experience" class="container">
+    <section id="experience" class="container">
         <h2>Experience & Publications</h2>
         <div class="project">
-            <h3>Development of a Laboratory Course in Industrial Power and Control</h3>
-            <p><strong>Publication:</strong> ASEE PSW Conference 2024, Las Vegas, NV.</p>
-            <p>This paper discusses the design and implementation of an industrial power and control lab for Electrical Engineers.</p>
+            <h3>Development of a Laboratory Course</h3>
+            <p>ASEE PSW Conference 2024...</p>
         </div>
+    </section>
 
-        <div class="project">
-            <h3>Texas Instruments Internship: Automated Voltage Spike Checker</h3>
-            <p>Designed and automated PCB tests, reducing manual labor by 50% and improving program efficiency.</p>
-        </div>
-
-        <div class="project">
-            <h3>Hewlett Packard Enterprise: FCC Compliance Simulation</h3>
-            <p>Simulated radiated emissions and implemented solutions to achieve FCC compliance in hybrid cloud products.</p>
-        </div>
-
-        <div class="project">
-            <h3>Master Thesis (In Progress): Connected Autonomous Vehicles</h3>
-            <p>Harmonizing motion and communication using machine learning to optimize V2V digital communication systems.</p>
-        </div>
-    </div>
-
-    <!-- Projects Section -->
-    
-<div id="projects" class="container">
-    <h2>Projects</h2>
-
-    <!-- Portfolium Entries -->
-    <p><div class="portfolium-entry-widget" data-id="5135677" data-width="300"></div>
-    <script src="https://portfolium.com/assets/js/portfolium.js" async></script></p>    
-
-
-
-    <p><div class="portfolium-entry-widget" data-id="3745769" data-width="300"></div></p>
-    <p><div class="portfolium-entry-widget" data-id="4672953" data-width="300"></div></p>
-    <p><div class="portfolium-entry-widget" data-id="3745830" data-width="300"></div></p>
-   
-
-    <!-- Portfolium Script -->
-    <script src="https://portfolium.com/assets/js/portfolium.js" async></script>
-
-    <p>Portfolio: <a href="https://portfolium.com/JacquelineRadd" target="_blank">My Portfolio</a></p>
-</div>
-
-
-        
-    </div>
-
-
-    <!-- Contact Section -->
-    <div id="blog" class="container">
-        <h2>Blog</h2>
-        <p><iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7216698433556893697" height="602" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe></p>
- 
-    </div>
-
-    <!-- Contact Section -->
-    <div id="contact" class="container">
-        <h2>Contact</h2>
-        <p>Feel free to reach out to me for collaborations, questions, or networking!</p>
-        <p>Email: <a href="mailto:jgraddin@calpoly.edu">jgraddin@calpoly.edu</a></p>
-        <p>Portfolio: <a href="https://portfolium.com/JacquelineRadd" target="_blank">My Portfolio</a></p>
-    </div>
-
-    <!-- Footer -->
     <footer>
-        <p>&copy; 2024 Jacqueline Radding | Designed for showcasing innovation and leadership.</p>
+        <p>&copy; 2024 Jacqueline Radding</p>
     </footer>
 </body>
 </html>
