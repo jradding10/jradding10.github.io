@@ -87,6 +87,12 @@
             margin-bottom: 1em;
         }
 
+        h2 {
+            color: #004b87;
+            margin-bottom: 1em;
+            font-weight: 700;
+        }
+
         .project {
             padding: 1.5em;
             border: 1px solid #ddd;
@@ -119,6 +125,16 @@
             font-size: 0.9em;
         }
 
+        a {
+            color: #004b87;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
         @media (max-width: 768px) {
             nav ul {
                 flex-direction: column;
@@ -130,6 +146,10 @@
 
             header h2 {
                 font-size: 2em;
+            }
+
+            .project {
+                padding: 1em;
             }
         }
     </style>
@@ -153,19 +173,60 @@
     <section id="about" class="container">
         <h2>About Me</h2>
         <img src="/images/aboutmep.jpg" alt="Jacqueline Radding">
-        <p>Hello! I'm Jacqueline Radding, a Master's student in Electrical Engineering at Cal Poly...</p>
+        <p>Hello! I'm Jacqueline Radding, a Master's student in Electrical Engineering at Cal Poly. I specialize in power electronics, VLSI design, and machine learning. Alongside my studies, I serve as the President of Cal Poly IEEE and work as a Resident Advisor, mentoring fellow students. My passion lies in developing smart technologies and advancing research in autonomous systems.</p>
     </section>
 
     <section id="experience" class="container">
         <h2>Experience & Publications</h2>
         <div class="project">
-            <h3>Development of a Laboratory Course</h3>
-            <p>ASEE PSW Conference 2024...</p>
+            <h3>Development of a Laboratory Course in Industrial Power and Control</h3>
+            <p><strong>Publication:</strong> ASEE PSW Conference 2024, Las Vegas, NV.</p>
+            <p>This paper discusses the design and implementation of an industrial power and control lab for Electrical Engineers.</p>
+        </div>
+
+        <div class="project">
+            <h3>Texas Instruments Internship: Automated Voltage Spike Checker</h3>
+            <p>Designed and automated PCB tests, reducing manual labor by 50% and improving program efficiency.</p>
+        </div>
+
+        <div class="project">
+            <h3>Hewlett Packard Enterprise: FCC Compliance Simulation</h3>
+            <p>Simulated radiated emissions and implemented solutions to achieve FCC compliance in hybrid cloud products.</p>
+        </div>
+
+        <div class="project">
+            <h3>Master Thesis (In Progress): Connected Autonomous Vehicles</h3>
+            <p>Harmonizing motion and communication using machine learning to optimize V2V digital communication systems.</p>
         </div>
     </section>
 
+    <section id="projects" class="container">
+        <h2>Projects</h2>
+        <div class="project">
+            <h3>Portfolio Project 1</h3>
+            <p>Description of your first portfolio project. Add some details about what you built and the technologies used.</p>
+        </div>
+        <div class="project">
+            <h3>Portfolio Project 2</h3>
+            <p>Description of your second portfolio project. Highlight its purpose and the skills demonstrated.</p>
+        </div>
+    </section>
+
+    <section id="blog" class="container">
+        <h2>Blog</h2>
+        <p>Check out my latest posts and updates on LinkedIn:</p>
+        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7216698433556893697" height="602" width="100%" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+    </section>
+
+    <section id="contact" class="container">
+        <h2>Contact</h2>
+        <p>Feel free to reach out to me for collaborations, questions, or networking!</p>
+        <p>Email: <a href="mailto:jgraddin@calpoly.edu">jgraddin@calpoly.edu</a></p>
+        <p>Portfolio: <a href="https://portfolium.com/JacquelineRadd" target="_blank">My Portfolio</a></p>
+    </section>
+
     <footer>
-        <p>&copy; 2024 Jacqueline Radding</p>
+        <p>&copy; 2024 Jacqueline Radding | Designed for showcasing innovation and leadership.</p>
     </footer>
 </body>
 </html>
