@@ -264,7 +264,7 @@
                 <button class="next">&#8250;</button>
             </div>
         </div>
-        
+
         <section id="projects" class="container">
             <div class="project">
                 <h3>Simulink Costas Loop BPSK</h3>
@@ -317,30 +317,42 @@
 
    
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const images = document.querySelectorAll('.carousel img');
-            const prevButton = document.querySelector('.carousel .prev');
-            const nextButton = document.querySelector('.carousel .next');
-            let currentIndex = 0;
-        
-            function updateCarousel() {
-                images.forEach((img, index) => {
-                    img.classList.toggle('active', index === currentIndex);
-                });
-            }
-        
-            prevButton.addEventListener('click', () => {
-                currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
-                updateCarousel();
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Select all carousels on the page
+    const carousels = document.querySelectorAll('.carousel');
+
+    carousels.forEach((carousel) => {
+        const images = carousel.querySelectorAll('img');
+        const prevButton = carousel.querySelector('.prev');
+        const nextButton = carousel.querySelector('.next');
+        let currentIndex = 0;
+
+        // Function to update the active image
+        function updateCarousel() {
+            images.forEach((img, index) => {
+                img.classList.toggle('active', index === currentIndex);
             });
-        
-            nextButton.addEventListener('click', () => {
-                currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
-                updateCarousel();
-            });
-        
+        }
+
+        // Event listener for the previous button
+        prevButton.addEventListener('click', () => {
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
             updateCarousel();
         });
+
+        // Event listener for the next button
+        nextButton.addEventListener('click', () => {
+            currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
+            updateCarousel();
+        });
+
+        // Initialize the carousel
+        updateCarousel();
+    });
+});
+
+
         </script>
         </body>
         
