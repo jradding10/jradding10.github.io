@@ -143,11 +143,25 @@
         }
 
         .carousel img {
-            max-width:60%;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            display: none;
-        }
+    max-width: 90%; /* Default size */
+    border-radius: 10px;
+    margin: 0 auto;
+    display: none;
+}
+
+.carousel img.active {
+    display: block;
+}
+
+/* Specific style for the filter project */
+.filter-carousel img {
+    max-width: 40%; /* 70% width for filter project */
+}
+
+/* Specific style for the Costas project */
+.costas-carousel img {
+    max-width: 95%; /* 90% width for Costas project */
+}
 
         /* Mobile Styles */
     @media (max-width: 768px) {
@@ -155,9 +169,6 @@
         max-width: 95%; /* Slightly larger images on mobile */
     }}
 
-        .carousel img.active {
-            display: block;
-        }
 
         .carousel button {
             position: absolute;
@@ -252,7 +263,7 @@
             <p>
                 Here is a 10 MHz low pass filter built in Keysight ADS. The filter was ordered on Oshpark PCB and had its S-parameters magnitude and phase tested. Impedance was also tested. Use the arrows below to navigate through the simulation and results images.
             </p>
-            <div class="carousel">
+            <div class="carousel filter-carousel">
                 <button class="prev">&#8249;</button>
                 <img src="/images/keysight1.PNG" class="active" alt="Filter Layout">
                 <img src="/images/copper.png" alt="Filter Layout">
@@ -273,7 +284,7 @@
             <p>
                 A receiver was designed to synchronize and demodulate 10 kbps data modulated by BPSK with a nominally 200 kHz carrier. The transmitter is designed to always lead with a pilot signal comprising ten consecutive 1 bits before the data begins. In the first image is a test harness is created with the ability to change the phase, and frequency, and angle drift. In the second image, a Costas loop is designed to handle the frequency bias and phase angle. The Costas loop locks to the center frequency of the signal and converts it to baseband. The loop does this by creating a local, in-phase, copy of the carrier and multiplying the carrier by the signal. Then, the result is passed through a lowpass filter. The third image is a voltage controlled oscillator generates a local carrier signal that correlates to the phase of the recieved signal. The fourth image is the sample and hold system that ensures that the pilot signal is read then starts the system after it is recieved
             </p>
-            <div class="carousel">
+            <div class="carousel costas-carousel>
                 <button class="prev">&#8249;</button>
                 <img src="/images/Testharness.PNG" class="active" alt="Test Harness">
                 <img src="/images/lecostasloop/lecostas.PNG" alt="Costas Loop">
