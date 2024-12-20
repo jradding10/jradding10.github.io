@@ -135,6 +135,44 @@
             text-decoration: underline;
         }
 
+        .carousel {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .carousel img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+
+        .carousel img.active {
+            display: block;
+        }
+
+        .carousel button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 1em;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        .carousel button.prev {
+            left: 10px;
+        }
+
+        .carousel button.next {
+            right: 10px;
+        }
+
         @media (max-width: 768px) {
             nav ul {
                 flex-direction: column;
@@ -202,14 +240,30 @@
 
     <section id="projects" class="container">
         <h2>Projects</h2>
+
         <div class="project">
-            <h3>Portfolio Project 1</h3>
-            <p>Insert image here</p>
+            <h3>10 MHz Low Pass Filter Simulation</h3>
+            <p>
+                Here is a 10 MHz low pass filter built in Keysight ADS. The filter was ordered on Oshpark PCB and had its S-parameters magnitude and phase tested. Impedance was also tested. Use the arrows below to navigate through the simulation and results images.
+            </p>
+            <div class="carousel">
+                <button class="prev">&#8249;</button>
+                <img src="/mnt/data/image.png" class="active" alt="Filter Layout">
+                <img src="/mnt/data/image-PRGRBp1Usm78b9GKPu7kZL.png" alt="Schematic Design">
+                <img src="/mnt/data/image-PEtstPWrAnMRKX9UN7ah7V.png" alt="PCB">
+                <img src="/mnt/data/image-WReEN7kK7eGpLJx1dLF6Mn.png" alt="S-Parameters Magnitude">
+                <img src="/mnt/data/image-JiQzAtriM6WLqduUB8FPjL.png" alt="S-Parameters Phase">
+                <img src="/mnt/data/image-WTt3jgYWPRxpN3QkwadCSP.png" alt="Impedance Smith Chart">
+                <button class="next">&#8250;</button>
+            </div>
         </div>
+        
+
         <div class="project">
             <h3>Portfolio Project 2</h3>
             <p>Insert image here</p>
         </div>
+
     </section>
 
     <section id="blog" class="container">
@@ -228,5 +282,37 @@
     <footer>
         <p>&copy; 2024 Jacqueline Radding | Designed for showcasing innovation and leadership.</p>
     </footer>
+
+   
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const images = document.querySelectorAll('.carousel img');
+            const prevButton = document.querySelector('.carousel .prev');
+            const nextButton = document.querySelector('.carousel .next');
+            let currentIndex = 0;
+        
+            function updateCarousel() {
+                images.forEach((img, index) => {
+                    img.classList.toggle('active', index === currentIndex);
+                });
+            }
+        
+            prevButton.addEventListener('click', () => {
+                currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
+                updateCarousel();
+            });
+        
+            nextButton.addEventListener('click', () => {
+                currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
+                updateCarousel();
+            });
+        
+            updateCarousel();
+        });
+        </script>
+        </body>
+        
+
+
 </body>
 </html>
