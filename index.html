@@ -267,8 +267,21 @@
         
 
         <div class="project">
-            <h3>Portfolio Project 2</h3>
-            <p>Insert image here</p>
+            <h3>Simulink Costas Loop BPSK</h3>
+            <p>
+                A receiver was designed to synchronize and demodulate 10 kbps data modulated by BPSK with a nominally 200 kHz carrier.  The transmitter is designed to always lead with a pilot signal comprising ten consecutive 1 bits before the data begins.
+                In the first image is a test harness is created with the ability to change the phase, add freqnecy, and angle drift. In the second image, a Costas loop is designed to handle the frequency bias and phase angle. The Costas loop locks to the center frequency of the signal and converts it to baseband. The loop does this by creating a local, in-phase, copy of the carrier and multiplyig the carrier by the signal. Then, the result is passed through a lowpass filter.
+
+            </p>
+            <div class="carousel">
+                <button class="prev">&#8249;</button>
+                <img src="/images/lecostasloop/Testharness.PNG" class="active" alt="Test Harness">
+                <img src="/images/lecostasloop/lecostas.PNG" alt="Costas Loop">
+                <img src="/images/lecostasloop/VCO.PNG" alt="Voltage Controlled Oscillator">
+                <img src="/images/lecostasloop/sampleandhold system.PNG" alt="Sample and Hold">
+
+                <button class="next">&#8250;</button>
+            </div>
         </div>
 
     </section>
