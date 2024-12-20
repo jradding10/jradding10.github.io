@@ -143,11 +143,17 @@
         }
 
         .carousel img {
-            max-width: 70%;
+            max-width: 50%;
             border-radius: 10px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             display: none;
         }
+
+        /* Mobile Styles */
+    @media (max-width: 768px) {
+    .carousel img {
+        max-width: 95%; /* Slightly larger images on mobile */
+    }
 
         .carousel img.active {
             display: block;
