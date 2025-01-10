@@ -163,6 +163,96 @@
     max-width: 95%; /* 90% width for Costas project */
 }
 
+
+
+
+
+        #chatbot-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: none;
+    flex-direction: column;
+    z-index: 1000;
+}
+
+#chatbot-header {
+    background-color: #004b87;
+    color: white;
+    padding: 10px;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#chatbot-body {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#chatbot-messages {
+    height: 200px;
+    overflow-y: auto;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+#chatbot-input {
+    width: calc(100% - 70px);
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#chatbot-send {
+    width: 60px;
+    background-color: #004b87;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#chatbot-send:hover {
+    background-color: #003a65;
+}
+
+#chatbot-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #004b87;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+#chatbot-toggle:hover {
+    background-color: #003a65;
+}
+
+#chatbot-close {
+    background: none;
+    color: white;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+
         /* Mobile Styles */
     @media (max-width: 768px) {
     .carousel img {
@@ -353,6 +443,82 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
         </script>
+
+
+
+<div id="chatbot-container">
+    <div id="chatbot-header">
+        <p>Ask Jacqueline</p>
+        <button id="chatbot-close">×</button>
+    </div>
+    <div id="chatbot-body">
+        <div id="chatbot-messages"></div>
+        <input type="text" id="chatbot-input" placeholder="Type your question here...">
+        <button id="chatbot-send">Send</button>
+    </div>
+</div>
+<div id="chatbot-toggle">💬</div>
+
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+    const chatbotContainer = document.getElementById("chatbot-container");
+    const chatbotToggle = document.getElementById("chatbot-toggle");
+    const chatbotClose = document.getElementById("chatbot-close");
+    const chatbotMessages = document.getElementById("chatbot-messages");
+    const chatbotInput = document.getElementById("chatbot-input");
+    const chatbotSend = document.getElementById("chatbot-send");
+
+    chatbotToggle.addEventListener("click", () => {
+        chatbotContainer.style.display = "flex";
+        chatbotToggle.style.display = "none";
+    });
+
+    chatbotClose.addEventListener("click", () => {
+        chatbotContainer.style.display = "none";
+        chatbotToggle.style.display = "block";
+    });
+
+    chatbotSend.addEventListener("click", () => {
+        const userMessage = chatbotInput.value.trim();
+        if (userMessage) {
+            appendMessage("user", userMessage);
+            chatbotInput.value = "";
+            respondToUser(userMessage);
+        }
+    });
+
+    chatbotInput.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") {
+            chatbotSend.click();
+        }
+    });
+
+    function appendMessage(sender, message) {
+        const messageDiv = document.createElement("div");
+        messageDiv.classList.add(sender === "user" ? "user-message" : "bot-message");
+        messageDiv.textContent = message;
+        chatbotMessages.appendChild(messageDiv);
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    function respondToUser(message) {
+        let response;
+        if (message.toLowerCase().includes("experience")) {
+            response = "I have experience working with Texas Instruments, Hewlett Packard Enterprise, and on advanced V2V communication systems. Feel free to ask about a specific project!";
+        } else if (message.toLowerCase().includes("contact")) {
+            response = "You can contact me at jgraddin@calpoly.edu.";
+        } else {
+            response = "I'm here to answer questions about my experience. Ask about a project or role to learn more!";
+        }
+        appendMessage("bot", response);
+    }
+});
+</script>
+
+
+
+
+    
         </body>
         
 
