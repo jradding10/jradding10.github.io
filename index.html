@@ -255,47 +255,47 @@
         </div>
     </section>
 
-    <section id="projects" class="container">
-        <h2>Projects</h2>
+<section id="projects" class="container">
+    <h2>Projects</h2>
 
-        <div class="project">
-            <h3>10 MHz Low Pass Filter Simulation</h3>
-            <p>
-                Here is a 10 MHz low pass filter built in Keysight ADS. The filter was ordered on Oshpark PCB and had its S-parameters magnitude and phase tested. Impedance was also tested. Use the arrows below to navigate through the simulation and results images.
-            </p>
-            <div class="carousel filter-carousel">
-                <button class="prev">&#8249;</button>
-                <img src="/images/keysight1.PNG" class="active" alt="Filter Layout">
-                <img src="/images/copper.png" alt="Filter Layout">
-                <img src="/images/keysight2.PNG" alt="Schematic Design">
-                <img src="/images/keysight3.PNG" alt="PCB">
-                <img src="/images/keysight4.PNG" alt="S-Parameters Magnitude of Ordered PCB">
-                <img src="/images/keysight5.PNG" alt="S-Parameters Phase">
-                <img src="/images/keysight6.PNG" alt="Impedance Smith Chart">
-                <button class="next">&#8250;</button>
-            </div>
+    <div class="project">
+        <h3>10 MHz Low Pass Filter Simulation</h3>
+        <p>
+            Here is a 10 MHz low pass filter built in Keysight ADS. The filter was ordered on Oshpark PCB and had its S-parameters magnitude and phase tested. Impedance was also tested. Use the arrows below to navigate through the simulation and results images.
+        </p>
+        <div class="carousel filter-carousel">
+            <button class="prev">&#8249;</button>
+            <img src="/images/keysight1.PNG" class="active" alt="Filter Layout">
+            <img src="/images/copper.png" alt="Filter Layout">
+            <img src="/images/keysight2.PNG" alt="Schematic Design">
+            <img src="/images/keysight3.PNG" alt="PCB">
+            <img src="/images/keysight4.PNG" alt="S-Parameters Magnitude of Ordered PCB">
+            <img src="/images/keysight5.PNG" alt="S-Parameters Phase">
+            <img src="/images/keysight6.PNG" alt="Impedance Smith Chart">
+            <button class="next">&#8250;</button>
         </div>
+        <p>
+            <strong>Additional Resources:</strong> 
+            <a href="/pdfs/EE425_LPF_DATA.pdf" target="_blank">Download Full Project Details (PDF)</a>
+        </p>
+    </div>
 
-        
-        
-
-        <div class="project">
-            <h3>Simulink Costas Loop BPSK</h3>
-            <p>
-                A receiver was designed to synchronize and demodulate 10 kbps data modulated by BPSK with a nominally 200 kHz carrier. The transmitter is designed to always lead with a pilot signal comprising ten consecutive 1 bits before the data begins. In the first image is a test harness is created with the ability to change the phase, and frequency, and angle drift. In the second image, a Costas loop is designed to handle the frequency bias and phase angle. The Costas loop locks to the center frequency of the signal and converts it to baseband. The loop does this by creating a local, in-phase, copy of the carrier and multiplying the carrier by the signal. Then, the result is passed through a lowpass filter. The third image is a voltage controlled oscillator generates a local carrier signal that correlates to the phase of the recieved signal. The fourth image is the sample and hold system that ensures that the pilot signal is read then starts the system after it is recieved
-            </p>
-            <div class="carousel costas-carousel">
-                <button class="prev">&#8249;</button>
-                <img src="/images/Testharness.PNG" class="active" alt="Test Harness">
-                <img src="/images/lecostasloop/lecostas.PNG" alt="Costas Loop">
-                <img src="/images/VCO.PNG" alt="Voltage Controlled Oscillator">
-                <img src="/images/lecostasloop/sampleandhold system.PNG" alt="Sample and Hold">
-
-                <button class="next">&#8250;</button>
-            </div>
+    <div class="project">
+        <h3>Simulink Costas Loop BPSK</h3>
+        <p>
+            A receiver was designed to synchronize and demodulate 10 kbps data modulated by BPSK with a nominally 200 kHz carrier. The transmitter is designed to always lead with a pilot signal comprising ten consecutive 1 bits before the data begins. In the first image is a test harness is created with the ability to change the phase, and frequency, and angle drift. In the second image, a Costas loop is designed to handle the frequency bias and phase angle. The Costas loop locks to the center frequency of the signal and converts it to baseband. The loop does this by creating a local, in-phase, copy of the carrier and multiplying the carrier by the signal. Then, the result is passed through a lowpass filter. The third image is a voltage controlled oscillator generates a local carrier signal that correlates to the phase of the recieved signal. The fourth image is the sample and hold system that ensures that the pilot signal is read then starts the system after it is recieved
+        </p>
+        <div class="carousel costas-carousel">
+            <button class="prev">&#8249;</button>
+            <img src="/images/Testharness.PNG" class="active" alt="Test Harness">
+            <img src="/images/lecostasloop/lecostas.PNG" alt="Costas Loop">
+            <img src="/images/VCO.PNG" alt="Voltage Controlled Oscillator">
+            <img src="/images/lecostasloop/sampleandhold system.PNG" alt="Sample and Hold">
+            <button class="next">&#8250;</button>
         </div>
+    </div>
+</section>
 
-    </section>
 
     <section id="blog" class="container">
         <h2>Blog</h2>
