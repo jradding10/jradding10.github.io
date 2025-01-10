@@ -446,74 +446,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-<div id="chatbot-container">
-    <div id="chatbot-header">
-        <p>Ask Jacqueline</p>
-        <button id="chatbot-close">×</button>
-    </div>
-    <div id="chatbot-body">
-        <div id="chatbot-messages"></div>
-        <input type="text" id="chatbot-input" placeholder="Type your question here...">
-        <button id="chatbot-send">Send</button>
-    </div>
-</div>
-<div id="chatbot-toggle">💬</div>
 
-    <script>
-document.addEventListener("DOMContentLoaded", () => {
-    const chatbotContainer = document.getElementById("chatbot-container");
-    const chatbotToggle = document.getElementById("chatbot-toggle");
-    const chatbotClose = document.getElementById("chatbot-close");
-    const chatbotMessages = document.getElementById("chatbot-messages");
-    const chatbotInput = document.getElementById("chatbot-input");
-    const chatbotSend = document.getElementById("chatbot-send");
 
-    chatbotToggle.addEventListener("click", () => {
-        chatbotContainer.style.display = "flex";
-        chatbotToggle.style.display = "none";
-    });
-
-    chatbotClose.addEventListener("click", () => {
-        chatbotContainer.style.display = "none";
-        chatbotToggle.style.display = "block";
-    });
-
-    chatbotSend.addEventListener("click", () => {
-        const userMessage = chatbotInput.value.trim();
-        if (userMessage) {
-            appendMessage("user", userMessage);
-            chatbotInput.value = "";
-            respondToUser(userMessage);
-        }
-    });
-
-    chatbotInput.addEventListener("keypress", (e) => {
-        if (e.key === "Enter") {
-            chatbotSend.click();
-        }
-    });
-
-    function appendMessage(sender, message) {
-        const messageDiv = document.createElement("div");
-        messageDiv.classList.add(sender === "user" ? "user-message" : "bot-message");
-        messageDiv.textContent = message;
-        chatbotMessages.appendChild(messageDiv);
-        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-    }
-
-    function respondToUser(message) {
-        let response;
-        if (message.toLowerCase().includes("experience")) {
-            response = "I have experience working with Texas Instruments, Hewlett Packard Enterprise, and on advanced V2V communication systems. Feel free to ask about a specific project!";
-        } else if (message.toLowerCase().includes("contact")) {
-            response = "You can contact me at jgraddin@calpoly.edu.";
-        } else {
-            response = "I'm here to answer questions about my experience. Ask about a project or role to learn more!";
-        }
-        appendMessage("bot", response);
-    }
-});
+    <!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/6780ad6d49e2fd8dfe057258/1ih7aat71';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
 </script>
+<!--End of Tawk.to Script-->
 
 
 
