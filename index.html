@@ -318,29 +318,29 @@
     <section id="about" class="container">
         <h2>About Me</h2>
         <img src="/images/aboutmep.jpg" alt="Jacqueline Radding">
-        <p>Nice to meet you! I'm Jacqueline Radding, a Master's student in Electrical Engineering at Cal Poly San Luis Obispo. I specialize in PCB design, digital communications, and more. Alongside my studies, I serve as the President of Cal Poly IEEE and work as a Resident Advisor, mentoring fellow students. My passion lies in developing IOT technologies and advancing research in V2V communication systems.</p>
+        <p>Hello! I'm Jacqueline Radding, a Master's student in Electrical Engineering at Cal Poly San Luis Obispo. I specialize in PCB design and digital communications. Alongside my studies, I serve as the President of Cal Poly IEEE and work as a Resident Advisor, mentoring fellow students. My passion lies in developing IOT technologies and advancing research in V2V communication systems.</p>
     </section>
 
     <section id="experience" class="container">
         <h2>Experience & Publications</h2>
         <div class="project">
-            <h3>Development of a Laboratory Course in Industrial Power and Control</h3>
+            <h3>Development of a Laboratory Course in Industrial Power and Control (2023)</h3>
             <p><strong>Publication:</strong> ASEE PSW Conference 2024, Las Vegas, NV.</p>
             <p>This paper discusses the design and implementation of an industrial power and control lab for Electrical Engineers.</p>
         </div>
 
         <div class="project">
-            <h3>Texas Instruments Internship: Automated Voltage Spike Checker</h3>
+            <h3>Texas Instruments Internship: Automated Voltage Spike Checker (2024)</h3>
             <p>Designed and automated PCB tests, reducing manual labor by 50% and improving program efficiency.</p>
         </div>
 
         <div class="project">
-            <h3>Hewlett Packard Enterprise: FCC compliance Simulation</h3>
+            <h3>Hewlett Packard Enterprise: FCC compliance Simulation (2023)</h3>
             <p>Simulated radiated emissions and implemented solutions to achieve FCC compliance in hybrid cloud products.</p>
         </div>
 
         <div class="project">
-            <h3>Master Thesis (In Progress): Connected Autonomous Vehicles</h3>
+            <h3>Master Thesis (In Progress): Connected Autonomous Vehicles(24/25)</h3>
             <p>Harmonizing motion and communication using machine learning to optimize V2V digital communication systems.</p>
         </div>
     </section>
@@ -373,7 +373,7 @@
     <div class="project">
         <h3>10 MHz Low Pass Filter Simulation</h3>
         <p>
-            Here is a 10 MHz low pass filter built in Keysight ADS. The filter was ordered on Oshpark PCB and had its S-parameters magnitude and phase tested. Impedance was also tested. Use the arrows below to navigate through the simulation and results images.
+            Here is a 10 MHz low pass filter built in Keysight ADS. The filter was ordered on Oshpark PCB and had its S-parameters magnitude and phase tested on a VNA. Impedance was also tested. Use the arrows below to navigate through the simulation and results images.
         </p>
         <div class="carousel filter-carousel">
             <button class="prev">&#8249;</button>
@@ -395,7 +395,11 @@
     <div class="project">
         <h3>Simulink Costas Loop BPSK</h3>
         <p>
-            A receiver was designed to synchronize and demodulate 10 kbps data modulated by BPSK with a nominally 200 kHz carrier. The transmitter is designed to always lead with a pilot signal comprising ten consecutive 1 bits before the data begins. In the first image is a test harness is created with the ability to change the phase, and frequency, and angle drift. In the second image, a Costas loop is designed to handle the frequency bias and phase angle. The Costas loop locks to the center frequency of the signal and converts it to baseband. The loop does this by creating a local, in-phase, copy of the carrier and multiplying the carrier by the signal. Then, the result is passed through a lowpass filter. The third image is a voltage controlled oscillator generates a local carrier signal that correlates to the phase of the recieved signal. The fourth image is the sample and hold system that ensures that the pilot signal is read then starts the system after it is recieved
+           A receiver was designed to synchronize and demodulate 10 kbps data modulated using BPSK with a nominal 200 kHz carrier. The transmitter consistently begins with a pilot signal consisting of ten consecutive '1' bits, followed by the data stream.
+
+In the first image, a test harness is shown with configurable parameters, allowing adjustments to phase, frequency, and angle drift. The second image illustrates a Costas loop, implemented to correct frequency bias and phase offset. The Costas loop locks onto the signal’s center frequency, downconverting it to baseband by generating a local, in-phase replica of the carrier, multiplying it with the received signal, and then filtering the result through a low-pass filter.
+
+The third image depicts a voltage-controlled oscillator (VCO) that generates a local carrier signal aligned with the phase of the received signal. The fourth image shows a sample-and-hold system designed to detect the pilot signal, triggering the receiver to process the incoming data once the pilot is successfully identified.
         </p>
         <div class="carousel costas-carousel">
             <button class="prev">&#8249;</button>
