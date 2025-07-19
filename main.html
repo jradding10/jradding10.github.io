@@ -1,118 +1,254 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jacqueline Radding | Electrical Engineer</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-            color: #333;
-        }
-        header {
-            background-color: #004b87;
-            color: white;
-            padding: 1em 0;
-            text-align: center;
-        }
-        nav {
-            background-color: #ddd;
-            text-align: center;
-            padding: 0.5em 0;
-        }
-        nav a {
-            margin: 0 15px;
-            text-decoration: none;
-            color: #333;
-        }
-        .container {
-            width: 90%;
-            margin: 0 auto;
-            padding: 1em 0;
-        }
-        h1, h2 {
-            color: #004b87;
-        }
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 1em 0;
-            margin-top: 2em;
-        }
-        .project {
-            margin-bottom: 1.5em;
-            padding: 1em;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jacqueline Radding | Electrical Engineer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8f9fa;
+      color: #212529;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+    header {
+      background: linear-gradient(135deg, #004b87, #0062b8);
+      color: white;
+      text-align: center;
+      padding: 6em 1em;
+      position: relative;
+    }
+    header h1 {
+      font-size: 3em;
+      font-weight: 700;
+    }
+    header p span {
+      font-weight: 400;
+      font-size: 1.4em;
+    }
+    nav {
+      position: sticky;
+      top: 0;
+      background: white;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+    nav ul {
+      display: flex;
+      justify-content: center;
+      padding: 1em;
+    }
+    nav ul li {
+      list-style: none;
+      margin: 0 1em;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: #333;
+      font-size: 1.1em;
+      font-weight: 600;
+      padding: 0.5em 1em;
+      transition: 0.3s;
+    }
+    nav ul li a:hover {
+      color: white;
+      background: #004b87;
+      border-radius: 5px;
+    }
+    section {
+      max-width: 1100px;
+      margin: 3em auto;
+      padding: 2em;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+    section h2 {
+      color: #004b87;
+      margin-bottom: 1em;
+      font-weight: 700;
+    }
+    .project, .experience {
+      margin-bottom: 2em;
+      padding: 1.5em;
+      border-radius: 10px;
+      border-left: 5px solid #004b87;
+      background: #f1f4f6;
+      transition: transform 0.3s ease;
+    }
+    .project:hover, .experience:hover {
+      transform: translateY(-5px);
+    }
+    .about-image {
+      float: left;
+      margin: 0 20px 20px 0;
+      width: 200px;
+      height: auto;
+      border-radius: 8px;
+    }
+    a {
+      color: #004b87;
+      text-decoration: none;
+    }
+    a:hover { text-decoration: underline; }
+    footer {
+      background: #004b87;
+      color: white;
+      text-align: center;
+      padding: 2em 1em;
+    }
+    @media (max-width: 768px) {
+      nav ul { flex-direction: column; }
+      .about-image { float: none; display: block; margin: 0 auto 20px; }
+    }
+
+    #chatbot-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 300px;
+      background-color: #f8f9fa;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      display: none;
+      flex-direction: column;
+      z-index: 1000;
+    }
+    #chatbot-header {
+      background-color: #004b87;
+      color: white;
+      padding: 10px;
+      border-radius: 10px 10px 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    #chatbot-body {
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    #chatbot-messages {
+      height: 200px;
+      overflow-y: auto;
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 5px;
+    }
+    #chatbot-input {
+      width: calc(100% - 70px);
+      padding: 5px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    #chatbot-send {
+      width: 60px;
+      background-color: #004b87;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #chatbot-send:hover {
+      background-color: #003a65;
+    }
+    #chatbot-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #004b87;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+    }
+    #chatbot-toggle:hover {
+      background-color: #003a65;
+    }
+    #chatbot-close {
+      background: none;
+      color: white;
+      border: none;
+      font-size: 1.5em;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <h1>Jacqueline Radding</h1>
-        <p>Electrical Engineer | Cal Poly Master's Student | IEEE President</p>
-    </header>
+  <header>
+    <h1>Jacqueline Radding</h1>
+    <p><span id="typed-text"></span></p>
+  </header>
 
-    <!-- Navigation -->
-    <nav>
-        <a href="#about">About Me</a>
-        <a href="#projects">Projects & Publications</a>
-        <a href="#contact">Contact</a>
-    </nav>
+  <nav>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-    <!-- About Me Section -->
-    <div id="about" class="container">
-        <h2>About Me</h2>
-        <p>Hello! I'm Jacqueline Radding, a Master's student in Electrical Engineering at Cal Poly. I specialize in power electronics, VLSI design, and machine learning. Alongside my studies, I serve as the President of Cal Poly IEEE and work as a Resident Advisor, mentoring fellow students. My passion lies in developing smart technologies and advancing research in autonomous systems.</p>
-        <p>Explore my work and publications below to see my contributions to engineering and innovation!</p>
+  <!-- Your sections go here (about, experience, projects, etc.) -->
+
+  <div id="chatbot-toggle">💬</div>
+  <div id="chatbot-container">
+    <div id="chatbot-header">
+      Chatbot
+      <button id="chatbot-close">&times;</button>
     </div>
-
-    <!-- Projects & Publications Section -->
-    <div id="projects" class="container">
-        <h2>Projects & Publications</h2>
-        
-        <!-- Project 1 -->
-        <div class="project">
-            <h3>Development of a Laboratory Course in Industrial Power and Control</h3>
-            <p><strong>Publication:</strong> ASEE PSW Conference 2024, Las Vegas, NV.</p>
-            <p>This paper discusses the design and implementation of an industrial power and control lab for Electrical Engineers.</p>
-        </div>
-        
-        <!-- Project 2 -->
-        <div class="project">
-            <h3>Texas Instruments Internship: Automated Voltage Spike Checker</h3>
-            <p>Designed and automated PCB tests, reducing manual labor by 50% and improving program efficiency.</p>
-        </div>
-
-        <!-- Project 3 -->
-        <div class="project">
-            <h3>Hewlett Packard Enterprise: FCC Compliance Simulation</h3>
-            <p>Simulated radiated emissions and implemented solutions to achieve FCC compliance in hybrid cloud products.</p>
-        </div>
-        
-        <!-- Project 4 -->
-        <div class="project">
-            <h3>Master Thesis (In Progress): Connected Autonomous Vehicles</h3>
-            <p>Harmonizing motion and communication using machine learning to optimize V2V systems.</p>
-        </div>
+    <div id="chatbot-body">
+      <div id="chatbot-messages"></div>
+      <div style="display: flex;">
+        <input type="text" id="chatbot-input" placeholder="Type a message...">
+        <button id="chatbot-send">Send</button>
+      </div>
     </div>
+  </div>
 
-    <!-- Contact Section -->
-    <div id="contact" class="container">
-        <h2>Contact</h2>
-        <p>Feel free to reach out to me for collaborations, questions, or networking!</p>
-        <p>Email: <a href="mailto:jgraddin@calpoly.edu">jgraddin@calpoly.edu</a></p>
-        <p>Portfolio: <a href="https://portfolium.com/JacquelineRadd" target="_blank">My Portfolio</a></p>
-    </div>
+  <footer>
+    <p>&copy; 2024 Jacqueline Radding | Designed for showcasing innovation and leadership.</p>
+  </footer>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2024 Jacqueline Radding | Designed for showcasing innovation and leadership.</p>
-    </footer>
+  <script>
+    new Typed("#typed-text", {
+      strings: ["Electrical Engineer", "PCB Designer", "5G Researcher", "Cal Poly SLO Alumna"],
+      typeSpeed: 60,
+      backSpeed: 30,
+      loop: true
+    });
+    AOS.init();
+
+    document.getElementById('chatbot-toggle').addEventListener('click', () => {
+      document.getElementById('chatbot-container').style.display = 'flex';
+    });
+    document.getElementById('chatbot-close').addEventListener('click', () => {
+      document.getElementById('chatbot-container').style.display = 'none';
+    });
+    document.getElementById('chatbot-send').addEventListener('click', () => {
+      const input = document.getElementById('chatbot-input');
+      const msg = input.value.trim();
+      if (msg) {
+        const messages = document.getElementById('chatbot-messages');
+        const userMsg = document.createElement('div');
+        userMsg.textContent = `You: ${msg}`;
+        messages.appendChild(userMsg);
+        input.value = '';
+        messages.scrollTop = messages.scrollHeight;
+      }
+    });
+  </script>
 </body>
 </html>
