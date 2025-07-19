@@ -6,6 +6,85 @@
     <title>Jacqueline Radding | Electrical Engineer</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+
+    /*Mobile Nav Bar stuff*/
+        nav {
+    background: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    position: sticky;
+    top: 0;
+    width: 100%;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.nav-logo {
+    font-size: 1.3em;
+    font-weight: 700;
+    color: #004b87;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 1em;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1.1em;
+    font-weight: 600;
+    padding: 0.5em 1em;
+    transition: color 0.3s, background 0.3s;
+}
+
+.nav-links li a:hover {
+    background-color: #004b87;
+    color: white;
+    border-radius: 5px;
+}
+
+.nav-toggle {
+    display: none;
+    font-size: 1.8em;
+    cursor: pointer;
+}
+
+/* Mobile menu */
+@media (max-width: 768px) {
+    .nav-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: white;
+        padding: 1em 0;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        text-align: center;
+        margin: 0.5em 0;
+    }
+}
+
+
+        
         /* General Reset */
         * {
             margin: 0;
@@ -313,15 +392,20 @@
         <p>Electrical Engineer</p>
     </header>
 
-    <nav>
-        <ul>
+<nav>
+    <div class="nav-container">
+        <div class="nav-logo">Jacqueline Radding</div>
+        <div class="nav-toggle" id="nav-toggle">&#9776;</div>
+        <ul class="nav-links" id="nav-links">
             <li><a href="#about">About Me</a></li>
             <li><a href="#experience">Experience</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#blog">Blog</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
-    </nav>
+    </div>
+</nav>
+
 
     <section id="about" class="container">
         <h2>About Me</h2>
@@ -521,7 +605,15 @@ document.addEventListener('DOMContentLoaded', () => {
         </script>
 
 
+/*Nav bar stuff Java*/
+<script>
+    const toggle = document.getElementById('nav-toggle');
+    const links = document.getElementById('nav-links');
 
+    toggle.addEventListener('click', () => {
+        links.classList.toggle('active');
+    });
+</script>
 
 
 
