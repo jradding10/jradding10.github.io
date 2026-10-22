@@ -101,6 +101,22 @@
             ]
         },
         {
+            id: 'aeroaccel',
+            type: 'Project',
+            meta: 'EE 329',
+            title: 'Aeroaccel G-Force Trigger',
+            full: 'Aeroaccel: An Accelerometer-Triggered Servo on an STM32',
+            tags: ['STM32', 'Embedded C', 'I2C', 'PWM', 'UART'],
+            summary: 'An STM32 that reads G-force from an accelerometer and moves a servo at 0.5, 1 and 2 G.',
+            body: [
+                'Aeroaccel was the final project for EE 329, Microprocessor-based Systems Design. It watches acceleration on an RC plane and moves a servo as the load passes 0.5, 1 and 2 G. The idea is for that servo to release a CO2 canister and make the kind of steam trail you see off fighter jets. We did not fly the canister, so the servo is the proof of concept.',
+                'An STM32L476 Nucleo board reads an MPU-6050 accelerometer over I2C. A timer interrupt drives an SG90 servo with a PWM signal, four LEDs show how many G\u2019s have been detected, and a UART link prints the reading to a terminal. The device and its code work as intended.',
+                'I worked with a partner on this one. I handled the accelerometer, the timer and MCU schematics, the proposal and the presentation. One revision dropped the LCD readout because it would not fit on the test setup, and the LEDs and UART took over that job.'
+            ],
+            images: [],
+            links: []
+        },
+        {
             id: 'asee-paper',
             type: 'Publication',
             meta: '2024',
