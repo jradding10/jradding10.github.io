@@ -78,18 +78,6 @@
             links: []
         },
         {
-            id: 'ti-internship',
-            type: 'Experience',
-            meta: '2024',
-            title: 'Texas Instruments Internship',
-            full: 'Texas Instruments Internship: Automated Voltage Spike Checker',
-            tags: ['PCB', 'Test automation'],
-            summary: 'Automated voltage spike checker for PCB testing.',
-            body: ['Designed and automated PCB tests, reducing manual labor by 50% and improving program efficiency.'],
-            images: [],
-            links: []
-        },
-        {
             id: 'asee-paper',
             type: 'Publication',
             meta: '2024',
@@ -116,21 +104,50 @@
             images: [],
             links: []
         },
+    ];
+
+
+    var TIMELINE = [
         {
-            id: 'hpe-fcc',
-            type: 'Experience',
-            meta: '2023',
-            title: 'Hewlett Packard Enterprise',
-            full: 'Hewlett Packard Enterprise: FCC Compliance Simulation',
-            tags: ['EMC', 'Simulation', 'FCC'],
-            summary: 'Radiated emissions simulation for FCC compliance.',
-            body: ['Simulated radiated emissions and implemented solutions to achieve FCC compliance in hybrid cloud products.'],
-            images: [],
-            links: []
+            id: 'cisco',
+            when: '1 yr 8 mo',
+            role: 'Product Engineer',
+            org: 'Cisco',
+            lead: true,
+            points: [
+                'Supported hyperscale customers, taking products from design through to volume manufacturing.',
+                'Worked in manufacturing engineering, bridging design, the factory floor and customer requirements.',
+                'Applied design for manufacturability (DFM) so boards and systems could be built reliably and at scale.'
+            ],
+            tags: ['Hyperscale', 'Manufacturing engineering', 'DFM', 'Product engineering']
+        },
+        {
+            id: 'calpoly',
+            when: '2025',
+            role: 'M.S. Electrical Engineering',
+            org: 'Cal Poly San Luis Obispo',
+            points: ['President of Cal Poly IEEE and a Resident Advisor, mentoring fellow students.'],
+            tags: ['Education', 'Leadership']
+        },
+        {
+            id: 'ti',
+            when: '2024',
+            role: 'Internship',
+            org: 'Texas Instruments',
+            points: ['Built an automated voltage spike checker. Designed and automated PCB tests, reducing manual labor by 50% and improving program efficiency.'],
+            tags: ['PCB', 'Test automation']
+        },
+        {
+            id: 'hpe',
+            when: '2023',
+            role: 'FCC compliance simulation',
+            org: 'Hewlett Packard Enterprise',
+            points: ['Simulated radiated emissions and implemented solutions to achieve FCC compliance in hybrid cloud products.'],
+            tags: ['EMC', 'Simulation', 'FCC']
         }
     ];
 
-    var TYPES = ['All', 'Project', 'Experience', 'Publication', 'Research'];
+    var TYPES = ['All', 'Project', 'Publication', 'Research'];
 
     /* ---------- Helpers ---------- */
 
@@ -222,7 +239,7 @@
     function Nav() {
         var open = useState(false);
         var isOpen = open[0], setOpen = open[1];
-        var links = [['about', 'About'], ['work', 'Work'], ['blog', 'Blog'], ['contact', 'Contact']];
+        var links = [['about', 'About'], ['experience', 'Experience'], ['projects', 'Projects'], ['blog', 'Blog'], ['contact', 'Contact']];
         return h('nav', { className: 'nav' },
             h('div', { className: 'wrap nav-row' },
                 h('a', { className: 'logo', href: '#top' }, 'JR', h('span', null, ' / Jacqueline Radding')),
@@ -243,11 +260,11 @@
     function Hero() {
         return h('header', { className: 'hero', id: 'top' },
             h('div', { className: 'wrap hero-inner' },
-                h('p', { className: 'eyebrow' }, 'Electrical Engineer / M.S. Cal Poly SLO 2025'),
+                h('p', { className: 'eyebrow' }, 'Product Engineer at Cisco / M.S. Cal Poly SLO 2025'),
                 h('h1', null, 'Jacqueline', h('br'), 'Radding'),
-                h('p', { className: 'lede' }, 'I design PCBs and digital communication systems, and build toward the Internet of Things.'),
+                h('p', { className: 'lede' }, 'I take hardware from design to volume manufacturing, with a focus on hyperscale products, DFM and digital communications.'),
                 h('div', { className: 'hero-actions' },
-                    h('a', { className: 'btn', href: '#work' }, 'Browse work'),
+                    h('a', { className: 'btn', href: '#projects' }, 'Browse projects'),
                     h('a', { className: 'btn ghost', href: 'resume_radding_2023.pdf', target: '_blank', rel: 'noopener' }, 'Resume')
                 )
             ),
@@ -262,11 +279,12 @@
                 h('div', { className: 'about' },
                     h('img', { src: 'images/aboutmep.jpg', alt: 'Jacqueline Radding', className: 'about-img' }),
                     h('div', null,
-                        h('p', { className: 'big' }, 'Hello! I’m Jacqueline Radding, a dedicated electrical engineer.'),
+                        h('p', { className: 'big' }, 'Hello! I’m Jacqueline Radding, an electrical engineer and Product Engineer at Cisco.'),
+                        h('p', null, 'At Cisco I work with hyperscale customers and in manufacturing engineering, applying design for manufacturability (DFM) to get hardware built reliably at scale.'),
                         h('p', null, 'I graduated from Cal Poly San Luis Obispo with a master’s in electrical engineering in 2025. At Cal Poly, I served as the President of Cal Poly IEEE and worked as a Resident Advisor, mentoring fellow students.'),
-                        h('p', null, 'I specialize in PCB design and digital communications. My passion lies in developing IoT (internet of things) technologies and advancing research in communication systems.'),
+                        h('p', null, 'I specialize in PCB design and digital communications, and I enjoy advancing research in communication systems.'),
                         h('ul', { className: 'facts' },
-                            ['PCB design', 'Digital communications', 'IoT', 'RF'].map(function (f) {
+                            ['Hyperscale', 'Manufacturing engineering', 'DFM', 'PCB design', 'Digital communications', 'RF'].map(function (f) {
                                 return h('li', { key: f }, f);
                             })
                         )
@@ -346,6 +364,27 @@
         );
     }
 
+    function Timeline() {
+        return h('section', { id: 'experience', className: 'section alt' },
+            h('div', { className: 'wrap' },
+                h('h2', { className: 'section-title' }, h('span', null, 'Experience')),
+                h('ol', { className: 'timeline' },
+                    TIMELINE.map(function (t) {
+                        return h('li', { key: t.id, className: 'tl-item' + (t.lead ? ' lead-item' : '') },
+                            h('div', { className: 'tl-when' }, t.when),
+                            h('div', { className: 'tl-card' },
+                                h('p', { className: 'kicker' }, t.org),
+                                h('h3', null, t.role),
+                                h('ul', { className: 'tl-points' }, t.points.map(function (p, i) { return h('li', { key: i }, p); })),
+                                h('ul', { className: 'facts tl-tags' }, t.tags.map(function (g) { return h('li', { key: g }, g); }))
+                            )
+                        );
+                    })
+                )
+            )
+        );
+    }
+
     function Work() {
         var initial = readParam();
         var qS = useState(''), q = qS[0], setQ = qS[1];
@@ -384,9 +423,9 @@
             }
         }
 
-        return h('section', { id: 'work', className: 'section alt' },
+        return h('section', { id: 'projects', className: 'section' },
             h('div', { className: 'wrap' },
-                h('h2', { className: 'section-title' }, h('span', null, 'Work')),
+                h('h2', { className: 'section-title' }, h('span', null, 'Projects')),
                 h('div', { className: 'work' },
                     h('aside', { className: 'index' },
                         h('div', { className: 'search' },
@@ -444,7 +483,7 @@
     }
 
     function Blog() {
-        return h('section', { id: 'blog', className: 'section' },
+        return h('section', { id: 'blog', className: 'section alt' },
             h('div', { className: 'wrap' },
                 h('h2', { className: 'section-title' }, h('span', null, 'Blog')),
                 h('p', { className: 'lead' }, 'Check out my latest posts and updates:'),
@@ -473,7 +512,7 @@
 
     function App() {
         return h(React.Fragment, null,
-            h(Nav), h(Hero), h(About), h(Work), h(Blog), h(Contact),
+            h(Nav), h(Hero), h(About), h(Timeline), h(Work), h(Blog), h(Contact),
             h('footer', { className: 'foot' }, h('div', { className: 'wrap' }, '© 2025 Jacqueline Radding'))
         );
     }

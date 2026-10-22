@@ -213,3 +213,27 @@ iframe { border: 1px solid var(--line); background: var(--white); display: block
 @media (prefers-reduced-motion: reduce) {
     * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
+
+/* Experience timeline */
+.timeline { list-style: none; position: relative; max-width: 900px; }
+.timeline::before { content: ""; position: absolute; left: 150px; top: 8px; bottom: 8px; width: 2px; background: var(--blue); }
+.tl-item { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 0; position: relative; padding-bottom: 28px; }
+.tl-item:last-child { padding-bottom: 0; }
+.tl-item::before { content: ""; position: absolute; left: 144px; top: 8px; width: 14px; height: 14px; background: var(--white); border: 3px solid var(--blue); z-index: 1; }
+.tl-item.lead-item::before { background: var(--blue-bright); border-color: var(--blue-bright); }
+.tl-when { padding: 4px 28px 0 0; text-align: right; font-weight: 700; color: var(--blue); font-size: 15px; font-variant-numeric: tabular-nums; }
+.tl-card { margin-left: 32px; background: var(--white); border: 1px solid var(--line); padding: 24px 28px; transition: border-color 0.2s, transform 0.2s; }
+.tl-card:hover { border-color: var(--blue); transform: translateX(4px); }
+.lead-item .tl-card { border-left: 6px solid var(--blue-bright); }
+.tl-card h3 { font-size: 22px; line-height: 1.25; color: var(--blue-dark); margin-bottom: 12px; }
+.tl-points { margin: 0 0 4px 18px; }
+.tl-points li + li { margin-top: 8px; }
+.tl-tags { margin-top: 16px; }
+
+@media (max-width: 720px) {
+    .timeline::before { left: 7px; }
+    .tl-item { grid-template-columns: minmax(0, 1fr); }
+    .tl-item::before { left: 0; }
+    .tl-when { text-align: left; padding: 0 0 8px 32px; }
+    .tl-card { margin-left: 32px; padding: 20px 16px; }
+}
