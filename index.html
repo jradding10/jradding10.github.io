@@ -4,636 +4,498 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jacqueline Radding | Electrical Engineer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --blue: #0B3D91;
+            --blue-dark: #082C6B;
+            --blue-light: #EAF1FB;
+            --line: #C9D6EA;
+            --text: #14213D;
+            --muted: #4A5A78;
+            --white: #FFFFFF;
+            --space: 8px;
+        }
 
-    /*Mobile Nav Bar stuff*/
-        nav {
-    background: white;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    position: sticky;
-    top: 0;
-    width: 100%;
-}
-
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1em;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.nav-logo {
-    font-size: 1.3em;
-    font-weight: 700;
-    color: #004b87;
-}
-
-.nav-links {
-    display: flex;
-    list-style: none;
-    gap: 1em;
-}
-
-.nav-links li a {
-    text-decoration: none;
-    color: #333;
-    font-size: 1.1em;
-    font-weight: 600;
-    padding: 0.5em 1em;
-    transition: color 0.3s, background 0.3s;
-}
-
-.nav-links li a:hover {
-    background-color: #004b87;
-    color: white;
-    border-radius: 5px;
-}
-
-.nav-toggle {
-    display: none;
-    font-size: 1.8em;
-    cursor: pointer;
-}
-
-/* Mobile menu */
-@media (max-width: 768px) {
-    .nav-toggle {
-        display: block;
-    }
-
-    .nav-links {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background: white;
-        padding: 1em 0;
-    }
-
-    .nav-links.active {
-        display: flex;
-    }
-
-    .nav-links li {
-        text-align: center;
-        margin: 0.5em 0;
-    }
-}
-
-
-        
-        /* General Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            border-radius: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 72px;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8f9fa;
-            color: #212529;
-            line-height: 1.6;
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--white);
+            color: var(--text);
+            line-height: 1.65;
+            font-size: 16px;
         }
 
+        a {
+            color: var(--blue);
+            text-decoration: none;
+            border-bottom: 1px solid var(--blue);
+        }
+
+        a:hover { background: var(--blue-light); }
+
+        a:focus-visible, button:focus-visible {
+            outline: 3px solid var(--blue);
+            outline-offset: 2px;
+        }
+
+        .wrap {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--white);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 64px;
+            flex-wrap: wrap;
+        }
+
+        .nav-logo {
+            font-weight: 700;
+            color: var(--blue);
+            letter-spacing: 0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 4px;
+        }
+
+        .nav-links a {
+            display: block;
+            padding: 8px 16px;
+            color: var(--text);
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            border: 0;
+        }
+
+        .nav-links a:hover {
+            background: var(--blue);
+            color: var(--white);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: var(--white);
+            color: var(--blue);
+            border: 1px solid var(--blue);
+            padding: 8px 16px;
+            font: 700 14px Arial, Helvetica, sans-serif;
+            cursor: pointer;
+        }
+
+        /* Hero */
         header {
-            background: #004b87;
-            color: white;
-            text-align: center;
-            padding: 4em 1em;
+            background: var(--blue);
+            color: var(--white);
+            padding: 96px 0 88px;
         }
 
-        header h2 {
-            font-size: 2.8em;
+        header .label {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            border-top: 4px solid var(--white);
+            display: inline-block;
+            padding-top: 16px;
+            margin-bottom: 24px;
+        }
+
+        header h1 {
+            font-size: 56px;
+            line-height: 1.1;
             font-weight: 700;
         }
 
         header p {
-            font-size: 1.2em;
-            margin-top: 0.5em;
+            font-size: 20px;
+            margin-top: 16px;
+            max-width: 560px;
             opacity: 0.9;
         }
 
-        nav {
-            position: sticky;
-            top: 0;
-            background: white;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
+        /* Sections */
+        section {
+            padding: 80px 0;
+            border-bottom: 1px solid var(--line);
         }
 
-        nav ul {
-            display: flex;
-            justify-content: center;
-            padding: 1em;
-        }
-
-        nav ul li {
-            list-style: none;
-            margin: 0 1em;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: #333;
-            font-size: 1.1em;
-            font-weight: 600;
-            padding: 0.5em 1em;
-            transition: color 0.3s, background 0.3s;
-        }
-
-        nav ul li a:hover {
-            color: white;
-            background: #004b87;
-            border-radius: 5px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 2em auto;
-            padding: 2em;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .container img {
-            max-width: 100%;
-            border-radius: 10px;
-            margin-bottom: 1em;
-        }
+        section:nth-of-type(even) { background: var(--blue-light); }
 
         h2 {
-            color: #004b87;
-            margin-bottom: 1em;
+            font-size: 14px;
             font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--blue);
+            margin-bottom: 40px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--blue);
         }
 
-        .project {
-            padding: 1.5em;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            margin-bottom: 2em;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
+        h3 {
+            font-size: 20px;
+            line-height: 1.3;
+            color: var(--blue-dark);
+            margin-bottom: 8px;
         }
 
-        .project:hover {
-            transform: scale(1.02);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        p + p { margin-top: 16px; }
+
+        /* About */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 40px;
+            align-items: start;
         }
 
-        .project h3 {
-            color: #004b87;
-            margin-bottom: 0.5em;
-            font-weight: 600;
+        .about-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border: 1px solid var(--line);
         }
 
-        footer {
-            text-align: center;
-            background: #333;
-            color: white;
-            padding: 1.5em 0;
-            margin-top: 2em;
+        /* Cards */
+        .card {
+            background: var(--white);
+            border: 1px solid var(--line);
+            border-left: 4px solid var(--blue);
+            padding: 32px;
+            margin-bottom: 24px;
         }
 
-        footer p {
-            font-size: 0.9em;
+        .card:last-child { margin-bottom: 0; }
+
+        .card:hover { border-color: var(--blue); }
+
+        .meta {
+            font-size: 14px;
+            color: var(--muted);
+            margin-bottom: 8px;
         }
 
-        a {
-            color: #004b87;
-            text-decoration: none;
-            font-weight: 600;
+        .links {
+            margin-top: 24px;
+            font-size: 14px;
         }
 
-        a:hover {
-            text-decoration: underline;
-        }
+        .links a { margin-right: 24px; display: inline-block; margin-bottom: 8px; }
 
+        /* Carousel */
         .carousel {
-            display: flex;
-            justify-content: center;
-            align-items: center;
             position: relative;
+            margin-top: 24px;
+            background: var(--blue-light);
+            border: 1px solid var(--line);
+            padding: 16px 56px;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .carousel img {
-    max-width: 90%; /* Default size */
-    border-radius: 10px;
-    margin: 0 auto;
-    display: none;
-}
+            display: none;
+            max-width: 100%;
+            max-height: 520px;
+            height: auto;
+        }
 
-.carousel img.active {
-    display: block;
-}
-
-/* Specific style for the filter project */
-.filter-carousel img {
-    max-width: 40%; /* 70% width for filter project */
-}
-
-/* Specific style for the Costas project */
-.costas-carousel img {
-    max-width: 95%; /* 90% width for Costas project */
-} /* About me image to wrap text*/
- .about-image {
-  float: left;
-  margin: 0 20px 20px 0;
-  width: 200px; /* adjust as needed */
-  height: auto;
-  border-radius: 8px; /* optional rounded corners */
-}
-
-
-
-
-
-
-        #chatbot-container {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 300px;
-    background-color: #f8f9fa;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    display: none;
-    flex-direction: column;
-    z-index: 1000;
-}
-
-#chatbot-header {
-    background-color: #004b87;
-    color: white;
-    padding: 10px;
-    border-radius: 10px 10px 0 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#chatbot-body {
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-#chatbot-messages {
-    height: 200px;
-    overflow-y: auto;
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 5px;
-}
-
-#chatbot-input {
-    width: calc(100% - 70px);
-    padding: 5px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-#chatbot-send {
-    width: 60px;
-    background-color: #004b87;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#chatbot-send:hover {
-    background-color: #003a65;
-}
-
-#chatbot-toggle {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #004b87;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 50%;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-}
-
-#chatbot-toggle:hover {
-    background-color: #003a65;
-}
-
-#chatbot-close {
-    background: none;
-    color: white;
-    border: none;
-    font-size: 1.5em;
-    cursor: pointer;
-}
-
-
-        /* Mobile Styles */
-    @media (max-width: 768px) {
-    .carousel img {
-        max-width: 95%; /* Slightly larger images on mobile */
-    }}
-
+        .carousel img.active { display: block; }
 
         .carousel button {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            padding: 1em;
+            width: 40px;
+            height: 40px;
+            background: var(--blue);
+            color: var(--white);
+            border: 0;
+            font: 700 20px Arial, Helvetica, sans-serif;
             cursor: pointer;
-            border-radius: 50%;
         }
 
-        .carousel button.prev {
-            left: 10px;
+        .carousel button:hover { background: var(--blue-dark); }
+        .carousel .prev { left: 8px; }
+        .carousel .next { right: 8px; }
+
+        .counter {
+            font-size: 14px;
+            color: var(--muted);
+            margin-top: 8px;
         }
 
-        .carousel button.next {
-            right: 10px;
+        /* Blog */
+        iframe {
+            border: 1px solid var(--line);
+            background: var(--white);
         }
+
+        /* Contact */
+        .contact-row {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 24px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: var(--blue);
+            color: var(--white);
+            font-weight: 700;
+            border: 1px solid var(--blue);
+        }
+
+        .btn:hover { background: var(--blue-dark); }
+
+        .btn.outline {
+            background: var(--white);
+            color: var(--blue);
+        }
+
+        .btn.outline:hover { background: var(--blue-light); }
+
+        footer {
+            background: var(--blue-dark);
+            color: var(--white);
+            padding: 32px 0;
+            font-size: 14px;
+        }
+
+        /* Chatbot widget (injected by external script) */
+        #chatbot-container, #chatbot-header, #chatbot-messages,
+        #chatbot-input, #chatbot-send, #chatbot-toggle { border-radius: 0; }
 
         @media (max-width: 768px) {
-            nav ul {
+            header { padding: 64px 0 56px; }
+            header h1 { font-size: 36px; }
+            section { padding: 56px 0; }
+            .about-grid { grid-template-columns: 1fr; }
+            .about-image { max-width: 220px; }
+            .card { padding: 24px 16px; }
+            .carousel { padding: 16px 48px; }
+
+            .nav-toggle { display: block; }
+            .nav-links {
+                display: none;
                 flex-direction: column;
+                width: 100%;
+                padding-bottom: 16px;
             }
-
-            nav ul li {
-                margin-bottom: 0.5em;
-            }
-
-            header h2 {
-                font-size: 2em;
-            }
-
-            .project {
-                padding: 1em;
-            }
+            .nav-links.active { display: flex; }
         }
     </style>
 </head>
 <body>
+    <nav>
+        <div class="wrap nav-container">
+            <div class="nav-logo">JACQUELINE RADDING</div>
+            <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links">Menu</button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <header>
-        <h1>Jacqueline Radding</h1>
-        <p>Electrical Engineer</p>
+        <div class="wrap">
+            <div class="label">Portfolio</div>
+            <h1>Jacqueline Radding</h1>
+            <p>Electrical Engineer. PCB design, digital communications, and IoT.</p>
+        </div>
     </header>
 
-<nav>
-    <div class="nav-container">
-        <div class="nav-logo">Jacqueline Radding</div>
-        <div class="nav-toggle" id="nav-toggle">&#9776;</div>
-        <ul class="nav-links" id="nav-links">
-            <li><a href="#about">About Me</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#blog">Blog</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </div>
-</nav>
-
-
-    <section id="about" class="container">
-        <h2>About Me</h2>
-          <img src="/images/aboutmep.jpg" alt="Jacqueline Radding" class="about-image">
-        <p>Hello! I'm Jacqueline Radding, a dedicated electrical engineer. I graduated from Cal Poly San Luis Obispo with a master's in electrical engineering in 2025. At Cal Poly, I served as the President of Cal Poly IEEE and worked as a Resident Advisor, mentoring fellow students. I specialize in PCB design and digital communications. My passion lies in developing IOT (internet of things) technologies and advancing research in communication systems.</p>
+    <section id="about">
+        <div class="wrap">
+            <h2>About</h2>
+            <div class="about-grid">
+                <img src="/images/aboutmep.jpg" alt="Jacqueline Radding" class="about-image">
+                <p>Hello! I'm Jacqueline Radding, a dedicated electrical engineer. I graduated from Cal Poly San Luis Obispo with a master's in electrical engineering in 2025. At Cal Poly, I served as the President of Cal Poly IEEE and worked as a Resident Advisor, mentoring fellow students. I specialize in PCB design and digital communications. My passion lies in developing IoT (internet of things) technologies and advancing research in communication systems.</p>
+            </div>
+        </div>
     </section>
 
-    <section id="experience" class="container">
-        <h2>Experience & Publications</h2>
+    <section id="experience">
+        <div class="wrap">
+            <h2>Experience &amp; Publications</h2>
 
-        <div class="project">
-            <h3>Texas Instruments Internship: Automated Voltage Spike Checker (2024)</h3>
-            <p>Designed and automated PCB tests, reducing manual labor by 50% and improving program efficiency.</p>
+            <div class="card">
+                <div class="meta">2024</div>
+                <h3>Texas Instruments Internship: Automated Voltage Spike Checker</h3>
+                <p>Designed and automated PCB tests, reducing manual labor by 50% and improving program efficiency.</p>
+            </div>
+
+            <div class="card">
+                <div class="meta">2024</div>
+                <h3>Development of a Laboratory Course in Industrial Power and Control</h3>
+                <p><strong>Publication:</strong> ASEE PSW Conference 2024, Las Vegas, NV.</p>
+                <p>This paper discusses the design and implementation of an industrial power and control PLC lab for Electrical Engineers.</p>
+            </div>
+
+            <div class="card">
+                <div class="meta">2024 / 2025</div>
+                <h3>Master Thesis: Connected Autonomous Vehicles</h3>
+                <p>Using machine learning to optimize V2V digital communication systems.</p>
+            </div>
+
+            <div class="card">
+                <div class="meta">2023</div>
+                <h3>Hewlett Packard Enterprise: FCC Compliance Simulation</h3>
+                <p>Simulated radiated emissions and implemented solutions to achieve FCC compliance in hybrid cloud products.</p>
+            </div>
         </div>
-        <div class="project">
-            <h3>Development of a Laboratory Course in Industrial Power and Control (2024)</h3>
-            <p><strong>Publication:</strong> ASEE PSW Conference 2024, Las Vegas, NV.</p>
-            <p>This paper discusses the design and implementation of an industrial power and control PLC lab for Electrical Engineers.</p>
-        </div>
-
-        
-        <div class="project">
-            <h3>Master Thesis: Connected Autonomous Vehicles(2024/2025)</h3>
-            <p>Using machine learning to optimize V2V digital communication systems.</p>
-        </div>
-
-
-        <div class="project">
-            <h3>Hewlett Packard Enterprise: FCC compliance Simulation (2023)</h3>
-            <p>Simulated radiated emissions and implemented solutions to achieve FCC compliance in hybrid cloud products.</p>
-        </div>
-
     </section>
 
-<section id="projects" class="container">
-    <h2>Projects</h2>
+    <section id="projects">
+        <div class="wrap">
+            <h2>Projects</h2>
 
+            <div class="card">
+                <h3>Transmitting Images Over SDRs With GNU Radio and Simulink</h3>
+                <p>Used Raspberry Pi SDRs to compare different modulation schemes (BPSK, QPSK, 16QAM) to find the maximum distance they could send an image to another SDR using GNU Radio and Simulink.</p>
+                <p>The first image shows an image sent over air to another SDR using BPSK. The second shows the same using 16QAM, which does not perform well because of its smaller decision boundaries. The third and fourth images are the code flow diagrams of the receiver and transmitter.</p>
+                <div class="carousel">
+                    <button class="prev" aria-label="Previous image">&#8249;</button>
+                    <img src="/images/gnuproj/BPSK_SNR12.JPG" class="active" alt="BPSK image transmission result">
+                    <img src="/images/gnuproj/64QAM_SNR16.JPG" alt="16QAM image transmission result">
+                    <img src="/images/gnuproj/recieve_flow.JPG" alt="Receiver flow diagram">
+                    <img src="/images/gnuproj/transmit_flow.JPG" alt="Transmitter flow diagram">
+                    <button class="next" aria-label="Next image">&#8250;</button>
+                </div>
+                <div class="links">
+                    <a href="/pdfs/EE 504 Software Defined Radio Lab Notebook (9).pdf" target="_blank" rel="noopener">Lab Notebook (PDF)</a>
+                    <a href="/pdfs/EE 504 Software Defined Radio Final Project (1).pdf" target="_blank" rel="noopener">SDR Modulation Final Report (PDF)</a>
+                </div>
+            </div>
 
-<div class="project">
-        <h3>Transmitting Images Over SDRs With GNU Radio and Simulink</h3>
-        <p>
-            Used raspberry pi SDRs to compare different modulation schemes(BPSK, QPSK, 16QAM) to find the maximum distance they could send an image to another SDR using GNU Radio and Simulink.
-            First image is sending an image over air to another SDR using BPSK
-            Second image is sending an image over air to another SDR using 16QAM (Not performing well because of the smaller decision boundaries)
-            Third and fourth images are the code flow diagrams of the transmitter and receiver 
-            
-        </p>
-        <div class="carousel filter-carousel">
-            <button class="prev">&#8249;</button>
-            <img src="/images/gnuproj/BPSK_SNR12.JPG" class="active" alt="Filter Layout">
-            <img src="/images/gnuproj/64QAM_SNR16.JPG" alt="Filter Layout">
-             <img src="/images/gnuproj/recieve_flow.JPG" alt="Filter Layout">
-            <img src="/images/gnuproj/trasmit_flow.JPG" alt="Filter Layout">
+            <div class="card">
+                <h3>10 MHz Low Pass Filter Simulation</h3>
+                <p>A 10 MHz low pass filter built in Keysight ADS. The filter was ordered on OSH Park PCB and had its S-parameter magnitude and phase tested on a VNA. Impedance was also tested. Use the arrows to navigate through the simulation and results images.</p>
+                <div class="carousel">
+                    <button class="prev" aria-label="Previous image">&#8249;</button>
+                    <img src="/images/keysight1.PNG" class="active" alt="Filter layout">
+                    <img src="/images/copper.png" alt="Copper layer">
+                    <img src="/images/keysight2.PNG" alt="Schematic design">
+                    <img src="/images/keysight3.PNG" alt="PCB">
+                    <img src="/images/keysight4.PNG" alt="S-parameter magnitude of ordered PCB">
+                    <img src="/images/keysight5.PNG" alt="S-parameter phase">
+                    <img src="/images/keysight6.PNG" alt="Impedance Smith chart">
+                    <button class="next" aria-label="Next image">&#8250;</button>
+                </div>
+                <div class="links">
+                    <a href="/pdfs/EE425_LPF_DATA.pdf" target="_blank" rel="noopener">Full Project Details (PDF)</a>
+                </div>
+            </div>
 
-            <button class="next">&#8250;</button>
+            <div class="card">
+                <h3>Simulink Costas Loop BPSK</h3>
+                <p>A receiver was designed to synchronize and demodulate 10 kbps data modulated using BPSK with a nominal 200 kHz carrier. The transmitter consistently begins with a pilot signal consisting of ten consecutive '1' bits, followed by the data stream.</p>
+                <p>The first image shows a test harness with configurable parameters, allowing adjustments to phase, frequency, and angle drift. The second illustrates a Costas loop, implemented to correct frequency bias and phase offset. The Costas loop locks onto the signal's center frequency, downconverting it to baseband by generating a local, in-phase replica of the carrier, multiplying it with the received signal, and then filtering the result through a low-pass filter.</p>
+                <p>The third image depicts a voltage-controlled oscillator (VCO) that generates a local carrier signal aligned with the phase of the received signal. The fourth shows a sample-and-hold system designed to detect the pilot signal, triggering the receiver to process the incoming data once the pilot is successfully identified.</p>
+                <div class="carousel">
+                    <button class="prev" aria-label="Previous image">&#8249;</button>
+                    <img src="/images/Testharness.PNG" class="active" alt="Test harness">
+                    <img src="/images/lecostasloop/lecostas.PNG" alt="Costas loop">
+                    <img src="/images/VCO.PNG" alt="Voltage controlled oscillator">
+                    <img src="/images/lecostasloop/sampleandhold system.PNG" alt="Sample and hold system">
+                    <button class="next" aria-label="Next image">&#8250;</button>
+                </div>
+            </div>
         </div>
-        <p>
-            <strong>Additional Resources:</strong> 
-            <a href="/pdfs/EE 504 Software Defined Radio Lab Notebook (9).pdf" target="_blank">Download Lab Notebook (PDF)</a>
-             <a href="/pdfs/EE 504 Software Defined Radio Final Project (1)" target="_blank">Download SDR Modulation Final Report (PDF)</a>
-        </p>
-    </div>
+    </section>
 
-    <div class="project">
-        <h3>10 MHz Low Pass Filter Simulation</h3>
-        <p>
-            Here is a 10 MHz low pass filter built in Keysight ADS. The filter was ordered on Oshpark PCB and had its S-parameters magnitude and phase tested on a VNA. Impedance was also tested. Use the arrows below to navigate through the simulation and results images.
-        </p>
-        <div class="carousel filter-carousel">
-            <button class="prev">&#8249;</button>
-            <img src="/images/keysight1.PNG" class="active" alt="Filter Layout">
-            <img src="/images/copper.png" alt="Filter Layout">
-            <img src="/images/keysight2.PNG" alt="Schematic Design">
-            <img src="/images/keysight3.PNG" alt="PCB">
-            <img src="/images/keysight4.PNG" alt="S-Parameters Magnitude of Ordered PCB">
-            <img src="/images/keysight5.PNG" alt="S-Parameters Phase">
-            <img src="/images/keysight6.PNG" alt="Impedance Smith Chart">
-            <button class="next">&#8250;</button>
+    <!-- for linkedin posts: https://iframely.com/try and https://www.sociablekit.com/app/users/widgets/explore_widgets -->
+    <section id="blog">
+        <div class="wrap">
+            <h2>Blog</h2>
+            <p style="margin-bottom: 24px;">Check out my latest posts and updates:</p>
+            <iframe src="https://widgets.sociablekit.com/linkedin-profile-posts/iframe/25577547" frameborder="0" width="100%" height="1000" title="LinkedIn posts"></iframe>
         </div>
-        <p>
-            <strong>Additional Resources:</strong> 
-            <a href="/pdfs/EE425_LPF_DATA.pdf" target="_blank">Download Full Project Details (PDF)</a>
-        </p>
-    </div>
+    </section>
 
-    <div class="project">
-        <h3>Simulink Costas Loop BPSK</h3>
-        <p>
-           A receiver was designed to synchronize and demodulate 10 kbps data modulated using BPSK with a nominal 200 kHz carrier. The transmitter consistently begins with a pilot signal consisting of ten consecutive '1' bits, followed by the data stream.
-
-In the first image, a test harness is shown with configurable parameters, allowing adjustments to phase, frequency, and angle drift. The second image illustrates a Costas loop, implemented to correct frequency bias and phase offset. The Costas loop locks onto the signal’s center frequency, downconverting it to baseband by generating a local, in-phase replica of the carrier, multiplying it with the received signal, and then filtering the result through a low-pass filter.
-
-The third image depicts a voltage-controlled oscillator (VCO) that generates a local carrier signal aligned with the phase of the received signal. The fourth image shows a sample-and-hold system designed to detect the pilot signal, triggering the receiver to process the incoming data once the pilot is successfully identified.
-        </p>
-        <div class="carousel costas-carousel">
-            <button class="prev">&#8249;</button>
-            <img src="/images/Testharness.PNG" class="active" alt="Test Harness">
-            <img src="/images/lecostasloop/lecostas.PNG" alt="Costas Loop">
-            <img src="/images/VCO.PNG" alt="Voltage Controlled Oscillator">
-            <img src="/images/lecostasloop/sampleandhold system.PNG" alt="Sample and Hold">
-            <button class="next">&#8250;</button>
+    <section id="contact">
+        <div class="wrap">
+            <h2>Contact</h2>
+            <p>Feel free to reach out for collaborations, questions, or networking.</p>
+            <div class="contact-row">
+                <a class="btn" href="mailto:jgraddin@calpoly.edu">jgraddin@calpoly.edu</a>
+                <a class="btn outline" href="https://portfolium.com/JacquelineRadd" target="_blank" rel="noopener">Portfolium</a>
+                <a class="btn outline" href="/resume_radding_2023.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
+            </div>
         </div>
-    </div>
-</section>
-
-<!-- for linkedin posts: https://iframely.com/try and https://www.sociablekit.com/app/users/widgets/explore_widgets -->
-    <section id="blog" class="container">
-        <h2>Blog</h2>
-        <p>Check out my latest posts and updates: </p>
-        <iframe src='https://widgets.sociablekit.com/linkedin-profile-posts/iframe/25577547' frameborder='0' width='100%' height='1000'></iframe>
-
-
-
-
-
-
-
-        
-<!-- ahhh commented out bc replaced
-<div class="iframely-embed">
-  <div class="iframely-responsive" style="height: 140px; padding-bottom: 0;">
-    <a href="https://www.linkedin.com/posts/jacqueline-radding_i-am-excited-to-announce-that-i-recently-activity-7344078816023146496-7jNy" data-iframely-url="//iframely.net/dkFElRue?card=small&theme=dark"></a>
-  </div>
-</div>
-<script async src="//iframely.net/embed.js"></script>
-
-<div class="iframely-embed">
-  <div class="iframely-responsive" style="padding-bottom: 50%; padding-top: 120px;">
-    <a href="https://www.linkedin.com/posts/jacqueline-radding_as-the-president-of-the-cal-poly-san-luis-activity-7123740557654335490-TsnJ" data-iframely-url="//iframely.net/M2fD8mnG"></a>
-  </div>
-</div>
-<script async src="//iframely.net/embed.js"></script>
-
-<div class="iframely-embed">
-  <div class="iframely-responsive" style="padding-bottom: 50%; padding-top: 120px;">
-    <a href="https://www.linkedin.com/posts/calpolyengineering_four-electrical-engineering-students-share-activity-7217195957363298305-zVxj" data-iframely-url="//iframely.net/ltikHdzS?theme=dark"></a>
-  </div>
-</div>
-<script async src="//iframely.net/embed.js"></script>
--->
-
-       </section>
-
-
-
-    
-
-    <section id="contact" class="container">
-        <h2>Contact</h2>
-        <p>Feel free to reach out to me for collaborations, questions, or networking!</p>
-        <p>Email: <a href="mailto:jgraddin@calpoly.edu">jgraddin@calpoly.edu</a></p>
-        <p>Portfolio: <a href="https://portfolium.com/JacquelineRadd" target="_blank">My Portfolio</a></p>
     </section>
 
     <footer>
-        <p>&copy; 2024 Jacqueline Radding | Designed for showcasing innovation and leadership.</p>
+        <div class="wrap">&copy; 2025 Jacqueline Radding</div>
     </footer>
 
-   
     <script>
+        document.querySelectorAll('.carousel').forEach((carousel) => {
+            const images = carousel.querySelectorAll('img');
+            let index = 0;
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Select all carousels on the page
-    const carousels = document.querySelectorAll('.carousel');
+            function show(i) {
+                index = (i + images.length) % images.length;
+                images.forEach((img, n) => img.classList.toggle('active', n === index));
+            }
 
-    carousels.forEach((carousel) => {
-        const images = carousel.querySelectorAll('img');
-        const prevButton = carousel.querySelector('.prev');
-        const nextButton = carousel.querySelector('.next');
-        let currentIndex = 0;
-
-        // Function to update the active image
-        function updateCarousel() {
-            images.forEach((img, index) => {
-                img.classList.toggle('active', index === currentIndex);
-            });
-        }
-
-        // Event listener for the previous button
-        prevButton.addEventListener('click', () => {
-            currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
-            updateCarousel();
+            carousel.querySelector('.prev').addEventListener('click', () => show(index - 1));
+            carousel.querySelector('.next').addEventListener('click', () => show(index + 1));
         });
 
-        // Event listener for the next button
-        nextButton.addEventListener('click', () => {
-            currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
-            updateCarousel();
+        const toggle = document.getElementById('nav-toggle');
+        const links = document.getElementById('nav-links');
+        toggle.addEventListener('click', () => {
+            const open = links.classList.toggle('active');
+            toggle.setAttribute('aria-expanded', open);
         });
-
-        // Initialize the carousel
-        updateCarousel();
-    });
-});
-
-
-        </script>
-
-
-/*Nav bar stuff Java*/
-<script>
-    const toggle = document.getElementById('nav-toggle');
-    const links = document.getElementById('nav-links');
-
-    toggle.addEventListener('click', () => {
-        links.classList.toggle('active');
-    });
-</script>
-
-
-
-
+        links.addEventListener('click', () => links.classList.remove('active'));
+    </script>
 
     <script type="text/javascript">
-    (function () {
-        d = document;
-        s = d.createElement("script");
-        s.src = "https://webagent.ai/api/chatbot/ebf6da9d-f059-4194-8c39-a6b5d5f64ba8";
-        s.async = 1;
-        d.getElementsByTagName("head")[0].appendChild(s);
-    })();
-</script>
-        </body>
-
-
-    
-
-
+        (function () {
+            var d = document;
+            var s = d.createElement("script");
+            s.src = "https://webagent.ai/api/chatbot/ebf6da9d-f059-4194-8c39-a6b5d5f64ba8";
+            s.async = 1;
+            d.getElementsByTagName("head")[0].appendChild(s);
+        })();
+    </script>
 </body>
-    <\head>
 </html>
