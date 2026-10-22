@@ -119,7 +119,7 @@
                 'Apply design for manufacturability (DFM) so boards and systems can be built reliably and at scale.',
                 'Focus on lowering cost while holding quality and supply chain resilience, so we deliver every time.'
             ],
-            tags: ['Hyperscale', 'Network switches', 'Manufacturing engineering', 'DFM', 'Supply chain']
+            tags: ['Hyperscalers', 'Network switches', 'Manufacturing engineering', 'DFM', 'Supply chain']
         },
         {
             id: 'calpoly',
