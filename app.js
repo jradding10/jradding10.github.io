@@ -171,7 +171,7 @@
         return q.toLowerCase().split(/\s+/).filter(Boolean).every(function (w) { return hay.indexOf(w) !== -1; });
     }
 
-    /* ---------- Hero waveform (BPSK carrier with phase flips) ---------- */
+    /* ---------- Hero waveform (scrolling clock signal) ---------- */
 
     function Wave() {
         var ref = useRef(null);
@@ -180,7 +180,6 @@
             if (!canvas) return;
             var ctx = canvas.getContext('2d');
             var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            var bits = [1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 0];
             var raf, t = 0;
 
             function size() {
@@ -194,30 +193,36 @@
             function draw() {
                 var w = canvas.clientWidth, hgt = canvas.clientHeight;
                 ctx.clearRect(0, 0, w, hgt);
-                var mid = hgt / 2, amp = hgt * 0.32, bitW = 120, cycles = 5;
+                var half = 36, hi = hgt * 0.22, lo = hgt * 0.78;
+                var first = Math.floor(t / half);
 
-                ctx.strokeStyle = 'rgba(255,255,255,0.18)';
+                // faint guides at each clock edge
+                ctx.strokeStyle = 'rgba(255,255,255,0.10)';
                 ctx.lineWidth = 1;
                 ctx.beginPath();
-                ctx.moveTo(0, mid + 0.5);
-                ctx.lineTo(w, mid + 0.5);
+                for (var e = first; e * half - t <= w; e++) {
+                    var gx = Math.round(e * half - t) + 0.5;
+                    ctx.moveTo(gx, 0);
+                    ctx.lineTo(gx, hgt);
+                }
                 ctx.stroke();
 
+                // clock: high on even half-periods, low on odd, sharp edges
                 ctx.strokeStyle = '#FFFFFF';
                 ctx.lineWidth = 2;
+                ctx.lineJoin = 'miter';
                 ctx.beginPath();
-                for (var x = 0; x <= w; x += 2) {
-                    var pos = x + t;
-                    var idx = Math.floor(pos / bitW);
-                    var sign = bits[((idx % bits.length) + bits.length) % bits.length] ? 1 : -1;
-                    var y = mid - sign * amp * Math.sin((pos / bitW) * cycles * 2 * Math.PI);
-                    if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+                for (var k = first; k * half - t <= w + half; k++) {
+                    var x0 = k * half - t, x1 = x0 + half;
+                    var y = (((k % 2) + 2) % 2 === 0) ? hi : lo;
+                    if (k === first) ctx.moveTo(x0, y); else ctx.lineTo(x0, y);
+                    ctx.lineTo(x1, y);
                 }
                 ctx.stroke();
             }
 
             function frame() {
-                t += 0.8;
+                t += 0.6;
                 draw();
                 raf = requestAnimationFrame(frame);
             }
