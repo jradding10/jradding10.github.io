@@ -110,24 +110,24 @@
     var TIMELINE = [
         {
             id: 'cisco',
-            when: '1 yr 8 mo',
+            when: 'Aug 2025 \u2013 Present',
             role: 'Product Engineer',
             org: 'Cisco',
             lead: true,
             points: [
-                'Supported hyperscale customers, taking products from design through to volume manufacturing.',
-                'Worked in manufacturing engineering, bridging design, the factory floor and customer requirements.',
-                'Applied design for manufacturability (DFM) so boards and systems could be built reliably and at scale.'
+                'Work on hyperscaler network switches, taking hardware from design through to volume manufacturing.',
+                'Apply design for manufacturability (DFM) so boards and systems can be built reliably and at scale.',
+                'Focus on lowering cost while holding quality and supply chain resilience, so we deliver every time.'
             ],
-            tags: ['Hyperscale', 'Manufacturing engineering', 'DFM', 'Product engineering']
+            tags: ['Hyperscale', 'Network switches', 'Manufacturing engineering', 'DFM', 'Supply chain']
         },
         {
             id: 'calpoly',
             when: '2025',
             role: 'M.S. Electrical Engineering',
             org: 'Cal Poly San Luis Obispo',
-            points: ['President of Cal Poly IEEE and a Resident Advisor, mentoring fellow students.'],
-            tags: ['Education', 'Leadership']
+            points: ['Specialized in digital communications and machine learning. President of Cal Poly IEEE and a Resident Advisor, mentoring fellow students.'],
+            tags: ['Digital communications', 'Machine learning', 'Leadership']
         },
         {
             id: 'ti',
@@ -260,9 +260,9 @@
     function Hero() {
         return h('header', { className: 'hero', id: 'top' },
             h('div', { className: 'wrap hero-inner' },
-                h('p', { className: 'eyebrow' }, 'Product Engineer at Cisco / M.S. Cal Poly SLO 2025'),
+                h('p', { className: 'eyebrow' }, 'Hardware Engineer / M.S. Cal Poly SLO 2025'),
                 h('h1', null, 'Jacqueline', h('br'), 'Radding'),
-                h('p', { className: 'lede' }, 'I take hardware from design to volume manufacturing, with a focus on hyperscale products, DFM and digital communications.'),
+                h('p', { className: 'lede' }, 'I build hardware that works on the bench and keeps working at scale.'),
                 h('div', { className: 'hero-actions' },
                     h('a', { className: 'btn', href: '#projects' }, 'Browse projects'),
                     h('a', { className: 'btn ghost', href: 'resume_radding_2023.pdf', target: '_blank', rel: 'noopener' }, 'Resume')
@@ -279,15 +279,9 @@
                 h('div', { className: 'about' },
                     h('img', { src: 'images/aboutmep.jpg', alt: 'Jacqueline Radding', className: 'about-img' }),
                     h('div', null,
-                        h('p', { className: 'big' }, 'Hello! I’m Jacqueline Radding, an electrical engineer and Product Engineer at Cisco.'),
-                        h('p', null, 'At Cisco I work with hyperscale customers and in manufacturing engineering, applying design for manufacturability (DFM) to get hardware built reliably at scale.'),
-                        h('p', null, 'I graduated from Cal Poly San Luis Obispo with a master’s in electrical engineering in 2025. At Cal Poly, I served as the President of Cal Poly IEEE and worked as a Resident Advisor, mentoring fellow students.'),
-                        h('p', null, 'I specialize in PCB design and digital communications, and I enjoy advancing research in communication systems.'),
-                        h('ul', { className: 'facts' },
-                            ['Hyperscale', 'Manufacturing engineering', 'DFM', 'PCB design', 'Digital communications', 'RF'].map(function (f) {
-                                return h('li', { key: f }, f);
-                            })
-                        )
+                        h('p', { className: 'big' }, 'It\u2019s nice to meet you. My name is Jacqueline, and I\u2019m a hardware engineer.'),
+                        h('p', null, 'At Cisco, I work on hyperscaler network switches, applying design for manufacturability (DFM) to get hardware built reliably at scale. My focus is lowering cost while maintaining quality and supply chain resilience, so we deliver every time.'),
+                        h('p', null, 'I graduated from Cal Poly San Luis Obispo with a master\u2019s in electrical engineering in 2025. At Cal Poly, I served as the President of Cal Poly IEEE and worked as a Resident Advisor, mentoring fellow students. I specialized in digital communications and machine learning.')
                     )
                 )
             )
