@@ -104,7 +104,7 @@
             images: [],
             links: [
                 { label: 'Read the thesis (Cal Poly Digital Commons)', href: 'https://digitalcommons.calpoly.edu/theses/3115/' },
-                { label: 'View the thesis slides (Google Slides)', href: 'https://docs.google.com/presentation/d/1rYZde0kah1hWYPUj8PYRCDBeGZsB4CYo/edit?usp=sharing&ouid=115642118826029580243&rtpof=true&sd=true' }
+                { label: 'View the thesis slides (Google Slides)', href: 'https://docs.google.com/presentation/d/12b5lJT-Eydzdcb8EUwnsdM3ceCfxGHsL/edit?usp=sharing&ouid=115642118826029580243&rtpof=true&sd=true' }
             ]
         },
     ];
