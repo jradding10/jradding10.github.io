@@ -78,6 +78,24 @@
             links: []
         },
         {
+            id: 'sonar-449',
+            type: 'Project',
+            meta: 'EE 449',
+            title: 'Ultrasonic Sonar Range Finder',
+            full: 'Sonar Device for EE 449, Electronics Design Laboratory',
+            tags: ['Analog', 'PLL', 'Op-amp', 'Oscillators', 'Arduino'],
+            summary: 'A 40 kHz ultrasonic range finder on a single 9 V battery, from crystal oscillator to PLL tone detector.',
+            body: [
+                'A short-range sonar built for EE 449, Electronics Design Laboratory. It sends a burst of 40 kHz wavelets from an ultrasonic transducer, listens for the echo, and measures the delay to work out distance. The whole system runs from a single 9 V battery.',
+                'Built with two teammates. I designed the one-shot and gating circuit, a CMOS 555 timer driving a bilateral switch, and the 40 kHz Pierce crystal oscillator. Together they shape each transmit burst into a clean train of square pulses.',
+                'We started by characterizing the transducer pair: sweeping 35 to 45 kHz and fitting a 4th order bandpass response gave a peak at 40 kHz and a Q of about 45. On the receive side, an op-amp stage amplifies the weak echo (40 dB was the balance between gain and noise) and an LM567 PLL tone detector pulls its output low when it locks onto the returning 40 kHz wavelet.',
+                'An op-amp voltage follower on a resistor divider makes a 4.5 V mid-rail from the 9 V battery. An Arduino Uno fires the transmit pulse, catches the PLL output with an external interrupt, times the round trip with micros(), and prints the one-way distance to the serial monitor.',
+                'The finished range finder reports distances from roughly 0.2 m to 2 m. It is a working proof of concept, and the small accuracy errors we saw were traced to crossed wires picking up interference.'
+            ],
+            images: [],
+            links: []
+        },
+        {
             id: 'asee-paper',
             type: 'Publication',
             meta: '2024',
