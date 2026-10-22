@@ -90,7 +90,7 @@
                 'This paper discusses the design and implementation of an industrial power and control PLC lab for Electrical Engineers.'
             ],
             images: [],
-            links: []
+            links: [{ label: 'Read the paper (ASEE)', href: 'https://peer.asee.org/development-of-a-laboratory-course-in-industrial-power-and-control-for-electrical-engineers' }]
         },
         {
             id: 'thesis',
@@ -102,7 +102,7 @@
             summary: 'Machine learning to optimize V2V communication systems.',
             body: ['Using machine learning to optimize V2V digital communication systems.'],
             images: [],
-            links: []
+            links: [{ label: 'Read the thesis (Cal Poly Digital Commons)', href: 'https://digitalcommons.calpoly.edu/theses/3115/' }]
         },
     ];
 
@@ -140,7 +140,7 @@
         {
             id: 'hpe',
             when: '2023',
-            role: 'FCC compliance simulation',
+            role: 'FCC Compliance Simulation Internship',
             org: 'Hewlett Packard Enterprise',
             points: ['Simulated radiated emissions and implemented solutions to achieve FCC compliance in hybrid cloud products.'],
             tags: ['EMC', 'Simulation', 'FCC']
