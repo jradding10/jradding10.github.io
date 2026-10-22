@@ -117,6 +117,23 @@
             links: []
         },
         {
+            id: 'bacteria-ml',
+            type: 'Project',
+            meta: 'EE 509',
+            title: 'Bacteria Classification',
+            full: 'Bacteria Classification With Deep Neural Networks',
+            tags: ['Deep learning', 'Computer vision', 'MATLAB', 'PyTorch', 'SqueezeNet'],
+            summary: 'SqueezeNet and GoogLeNet compared on microscope images of four bacteria, plus a circle-finding network.',
+            body: [
+                'The final project for EE 509, Computational Intelligence. The motivation is medical: antibiotic-resistant bacteria such as MRSA show up as round shapes in microscope images, so a network that can name the strain and find the cells could help quantify contamination and growth.',
+                'The project had two halves, and I led the classification half. I retrained two pretrained networks in MATLAB, the lightweight SqueezeNet and the larger GoogLeNet, to tell four bacteria apart: S. aureus, Proteus, Micrococcus and Listeria, using images from the DiBaS dataset. Data was split 70/15/15 for training, validation and testing, and training used the Adam optimizer with image augmentation.',
+                'Both networks classified the four species with better than 90% validation accuracy, with SqueezeNet landing around 98% and GoogLeNet around 92%. SqueezeNet is small enough to run on a lab laptop. When we added a fifth class, accuracy dropped for both, which points to needing far more training images and epochs before this scales to many species.',
+                'My partner took the second half: a PyTorch convolutional network that finds the centers of three colored circles in 10,000 synthetic images, modeled on the DeepPose pose-estimation paper. Those results were preliminary, and the report lays out the next steps, such as a larger network or a cascade of them.'
+            ],
+            images: [],
+            links: [{ label: 'Read the full report (Google Docs)', href: 'https://docs.google.com/document/d/14cCjh7tk_8FPD6eS1rb87f28Ir0p4mbSeqT30OXseOE/view' }]
+        },
+        {
             id: 'asee-paper',
             type: 'Publication',
             meta: '2024',
