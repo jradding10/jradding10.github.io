@@ -262,7 +262,7 @@
             h('div', { className: 'wrap hero-inner' },
                 h('p', { className: 'eyebrow' }, 'Hardware Engineer / M.S. Cal Poly SLO 2025'),
                 h('h1', null, 'Jacqueline', h('br'), 'Radding'),
-                h('p', { className: 'lede' }, 'I build hardware that works on the bench and keeps working at scale.'),
+                h('p', { className: 'lede' }, 'Quality comes first. I build hardware that is made right, ships on time and holds up in the field.'),
                 h('div', { className: 'hero-actions' },
                     h('a', { className: 'btn', href: '#projects' }, 'Browse projects'),
                     h('a', { className: 'btn ghost', href: 'resume_radding_2023.pdf', target: '_blank', rel: 'noopener' }, 'Resume')
