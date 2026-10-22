@@ -90,10 +90,15 @@
                 'Built with two teammates. I designed the one-shot and gating circuit, a CMOS 555 timer driving a bilateral switch, and the 40 kHz Pierce crystal oscillator. Together they shape each transmit burst into a clean train of square pulses.',
                 'We started by characterizing the transducer pair: sweeping 35 to 45 kHz and fitting a 4th order bandpass response gave a peak at 40 kHz and a Q of about 45. On the receive side, an op-amp stage amplifies the weak echo (40 dB was the balance between gain and noise) and an LM567 PLL tone detector pulls its output low when it locks onto the returning 40 kHz wavelet.',
                 'An op-amp voltage follower on a resistor divider makes a 4.5 V mid-rail from the 9 V battery. An Arduino Uno fires the transmit pulse, catches the PLL output with an external interrupt, times the round trip with micros(), and prints the one-way distance to the serial monitor.',
-                'The finished range finder reports distances from roughly 0.2 m to 2 m. It is a working proof of concept, and the small accuracy errors we saw were traced to crossed wires picking up interference.'
+                'The finished range finder reports distances from roughly 0.2 m to 2 m. It is a working proof of concept, and the small accuracy errors we saw were traced to crossed wires picking up interference.',
+                'Not in the original plan: a BJT stage to translate the Arduino\u2019s 5 V output up to the 9 V circuit, a pull-up resistor to stop a floating pin in the gating circuit, and a BJT buffer ahead of the transmit driver to clean up the signal.',
+                'Lessons learned: photograph the circuit before moving it, update the group on progress every week, check for floating pins, and keep the rails consistent.'
             ],
             images: [],
-            links: []
+            links: [
+                { label: 'Watch the demo (video)', href: 'https://drive.google.com/file/d/1cfSh94StYJ8DoKAccLk5jVh52jKbCF9A/view?usp=sharing' },
+                { label: 'Final demo slides (Google Slides)', href: 'https://docs.google.com/presentation/d/1wnjcF6iFt3uaiNqHBQvFQblhHx0SuW3g397f9eBPI28/view' }
+            ]
         },
         {
             id: 'asee-paper',
