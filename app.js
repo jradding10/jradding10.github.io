@@ -13,6 +13,8 @@
     var ITEMS = [];
     var TIMELINE = [];
     var SITE = {};
+    var APPS = [];
+    var PAGE = document.body.getAttribute('data-page') || 'home';
     var TYPES = ['All'];
     var TYPE_ORDER = ['Project', 'Publication', 'Research'];
 
@@ -115,19 +117,26 @@
     function Nav() {
         var open = useState(false);
         var isOpen = open[0], setOpen = open[1];
-        var links = [['about', 'About'], ['experience', 'Experience'], ['projects', 'Projects'], ['blog', 'Blog'], ['contact', 'Contact']]
-            .filter(function (l) { return l[0] !== 'blog' || !SITE.blog || SITE.blog.show !== false; });
+        var home = PAGE === 'home' ? '' : 'index.html';
+        var links = [
+            ['about', 'About', home + '#about'],
+            ['experience', 'Experience', home + '#experience'],
+            ['projects', 'Projects', home + '#projects'],
+            ['apps', 'Apps', 'apps.html'],
+            ['contact', 'Contact', '#contact']
+        ];
         return h('nav', { className: 'nav' },
             h('div', { className: 'wrap nav-row' },
-                h('a', { className: 'logo', href: '#top' }, 'JR', h('span', null, ' / Jacqueline Radding')),
+                h('a', { className: 'logo', href: home + '#top' }, 'JR', h('span', null, ' / Jacqueline Radding')),
                 h('button', {
                     className: 'nav-toggle', 'aria-expanded': isOpen, 'aria-controls': 'nav-links',
                     onClick: function () { setOpen(!isOpen); }
                 }, isOpen ? 'Close' : 'Menu'),
                 h('ul', { id: 'nav-links', className: 'nav-links' + (isOpen ? ' open' : '') },
                     links.map(function (l) {
+                        var here = l[0] === 'apps' && PAGE === 'apps';
                         return h('li', { key: l[0] },
-                            h('a', { href: '#' + l[0], onClick: function () { setOpen(false); } }, l[1]));
+                            h('a', { href: l[2], className: here ? 'here' : undefined, 'aria-current': here ? 'page' : undefined, onClick: function () { setOpen(false); } }, l[1]));
                     })
                 )
             )
@@ -185,6 +194,7 @@
         useEffect(function () { setIdx(0); }, [props.resetKey]);
 
         useEffect(function () {
+            if (props.noKeys) return undefined;
             function onKey(e) {
                 var tag = (document.activeElement && document.activeElement.tagName) || '';
                 if (tag === 'INPUT' || tag === 'TEXTAREA') return;
@@ -367,16 +377,108 @@
         );
     }
 
-    function Blog() {
-        var blog = SITE.blog || {};
-        if (blog.show === false) return null;
-        return h('section', { id: 'blog', className: 'section alt' },
+    function LinkedIn() {
+        var li = SITE.linkedin || {};
+        if (li.show === false || !li.url) return null;
+        return h('section', { id: 'linkedin', className: 'section alt linkedin-band' },
+            h('div', { className: 'wrap linkedin-row' },
+                h('div', { className: 'linkedin-text' },
+                    h('p', { className: 'kicker' }, 'LinkedIn'),
+                    li.heading && h('h2', { className: 'linkedin-heading' }, li.heading),
+                    li.lead && h('p', { className: 'lead' }, li.lead)),
+                h('a', { className: 'btn small', href: li.url, target: '_blank', rel: 'noopener' }, (li.label || 'Connect on LinkedIn') + ' ↗')
+            )
+        );
+    }
+
+    /* ---------- Apps page ---------- */
+
+    function AppsHeader() {
+        return h('header', { className: 'hero hero-sm', id: 'top' },
+            h('div', { className: 'wrap hero-inner' },
+                h('p', { className: 'eyebrow' }, 'Apps & code'),
+                h('h1', null, 'Apps'),
+                h('p', { className: 'lede' }, 'Programming projects with their source code. Browse them, download them and try them yourself.')
+            ),
+            h(Wave)
+        );
+    }
+
+    function AppCard(props) {
+        var a = props.app;
+        var open = props.open;
+        var links = [];
+        if (a.repo) links.push(h('a', { key: 'repo', className: 'btn small', href: a.repo, target: '_blank', rel: 'noopener' }, 'View on GitHub ↗'));
+        if (a.download && a.download.href) {
+            var local = !/^[a-z]+:/i.test(a.download.href);
+            links.push(h('a', {
+                key: 'dl', className: 'btn small outline', href: asset(a.download.href),
+                download: local ? '' : undefined, rel: 'noopener'
+            }, '↓ ' + (a.download.label || 'Download')));
+        }
+        return h('article', { className: 'app-card' + (open ? ' open' : ''), id: 'app-' + a.id },
+            a.images && a.images.length > 0
+                ? h('img', { className: 'app-cover', src: asset(a.images[0].src), alt: a.images[0].alt || '' })
+                : h('div', { className: 'app-cover plate', 'aria-hidden': 'true' }, h('span', null, a.meta || 'App'), h('b', null, a.name)),
+            h('div', { className: 'app-body' },
+                a.meta && h('p', { className: 'kicker' }, a.meta),
+                h('h2', null, a.name),
+                h('p', { className: 'app-tagline' }, a.tagline),
+                a.tech && a.tech.length > 0 && h('ul', { className: 'tags' }, a.tech.map(function (t) {
+                    return h('li', { key: t }, h('button', { onClick: function () { props.onTag(t); } }, t));
+                })),
+                h('div', { className: 'app-actions' }, links,
+                    h('button', { className: 'link-btn', 'aria-expanded': open, 'aria-controls': 'app-more-' + a.id, onClick: props.onToggle },
+                        open ? 'Hide details' : 'Details'),
+                    isAdmin() && h('a', { className: 'edit-link', href: 'admin.html?tab=apps&edit=' + encodeURIComponent(a.id) }, 'Edit')),
+                open && h('div', { className: 'app-more', id: 'app-more-' + a.id },
+                    (a.description || []).map(function (p, i) { return h('p', { key: i }, p); }),
+                    a.links && a.links.length > 0 && h('div', { className: 'links' }, a.links.map(function (l) {
+                        return h('a', { key: l.href, href: asset(l.href), target: '_blank', rel: 'noopener' }, l.label + ' ↗');
+                    })),
+                    a.images && a.images.length > 0 && h(Gallery, { images: a.images, resetKey: a.id, noKeys: true })
+                )
+            )
+        );
+    }
+
+    function Apps() {
+        var initial = null;
+        try { initial = new URLSearchParams(window.location.search).get('app'); } catch (e) { /* ignore */ }
+        var qS = useState(''), q = qS[0], setQ = qS[1];
+        var oS = useState(initial), openId = oS[0], setOpenId = oS[1];
+
+        useEffect(function () {
+            if (!initial) return;
+            var el = document.getElementById('app-' + initial);
+            if (el) el.scrollIntoView({ block: 'start' });
+        }, []);
+
+        var words = q.toLowerCase().split(/\s+/).filter(Boolean);
+        var results = APPS.filter(function (a) {
+            var hay = [a.name, a.tagline, a.meta, (a.tech || []).join(' '), (a.description || []).join(' ')].join(' ').toLowerCase();
+            return words.every(function (w) { return hay.indexOf(w) !== -1; });
+        });
+
+        return h('section', { id: 'apps', className: 'section' },
             h('div', { className: 'wrap' },
-                h('h2', { className: 'section-title' }, h('span', null, 'Blog')),
-                blog.lead && h('p', { className: 'lead' }, blog.lead),
-                blog.widgetUrl && h('iframe', {
-                    src: blog.widgetUrl, title: 'LinkedIn posts', width: '100%', height: '1000', frameBorder: '0'
-                })
+                h('h2', { className: 'section-title' }, h('span', null, 'All apps')),
+                APPS.length > 1 && h('div', { className: 'search apps-search' },
+                    h('label', { htmlFor: 'apps-search', className: 'sr' }, 'Search apps'),
+                    h('input', { id: 'apps-search', type: 'search', value: q, autoComplete: 'off', placeholder: 'Search by name or language', onChange: function (e) { setQ(e.target.value); } })),
+                APPS.length === 0
+                    ? h('p', { className: 'lead' }, 'Apps are on the way. Check back soon.')
+                    : results.length === 0
+                        ? h('div', { className: 'none' },
+                            h('p', null, 'Nothing matches “' + q + '”.'),
+                            h('button', { className: 'btn small', onClick: function () { setQ(''); } }, 'Clear search'))
+                        : h('div', { className: 'app-grid' }, results.map(function (a) {
+                            return h(AppCard, {
+                                key: a.id, app: a, open: openId === a.id,
+                                onToggle: function () { setOpenId(openId === a.id ? null : a.id); },
+                                onTag: function (t) { setQ(t); }
+                            });
+                        }))
             )
         );
     }
@@ -393,13 +495,22 @@
         );
     }
 
+    function Footer() {
+        var li = SITE.linkedin || {};
+        return h('footer', { className: 'foot' }, h('div', { className: 'wrap foot-row' },
+            h('span', null, SITE.footer || ''),
+            h('span', { className: 'foot-links' },
+                li.url && h('a', { href: li.url, target: '_blank', rel: 'noopener' }, 'LinkedIn'),
+                h('a', { href: 'https://github.com/jradding10', target: '_blank', rel: 'noopener' }, 'GitHub'),
+                isAdmin() && h('a', { href: 'admin.html' }, 'Admin'))));
+    }
+
     function App() {
+        if (PAGE === 'apps') {
+            return h(React.Fragment, null, h(Nav), h(AppsHeader), h(Apps), h(Contact), h(Footer));
+        }
         return h(React.Fragment, null,
-            h(Nav), h(Hero), h(About), h(Timeline), h(Work), h(Blog), h(Contact),
-            h('footer', { className: 'foot' }, h('div', { className: 'wrap foot-row' },
-                h('span', null, SITE.footer || ''),
-                isAdmin() && h('a', { href: 'admin.html' }, 'Admin')))
-        );
+            h(Nav), h(Hero), h(About), h(Timeline), h(Work), h(LinkedIn), h(Contact), h(Footer));
     }
 
     function loadJSON(path) {
@@ -411,18 +522,24 @@
 
     var root = ReactDOM.createRoot(document.getElementById('root'));
 
-    Promise.all([loadJSON('projects.json'), loadJSON('experience.json'), loadJSON('site.json')])
+    var files = PAGE === 'apps' ? ['site.json', 'apps.json'] : ['site.json', 'projects.json', 'experience.json'];
+
+    Promise.all(files.map(loadJSON))
         .then(function (data) {
-            ITEMS = data[0];
-            TIMELINE = data[1];
-            SITE = data[2];
-            var present = ITEMS.map(function (i) { return i.type; });
-            TYPES = ['All'].concat(TYPE_ORDER.filter(function (t) { return present.indexOf(t) !== -1; }),
-                present.filter(function (t, n) { return TYPE_ORDER.indexOf(t) === -1 && present.indexOf(t) === n; }));
+            SITE = data[0];
+            if (PAGE === 'apps') {
+                APPS = data[1];
+            } else {
+                ITEMS = data[1];
+                TIMELINE = data[2];
+                var present = ITEMS.map(function (i) { return i.type; });
+                TYPES = ['All'].concat(TYPE_ORDER.filter(function (t) { return present.indexOf(t) !== -1; }),
+                    present.filter(function (t, n) { return TYPE_ORDER.indexOf(t) === -1 && present.indexOf(t) === n; }));
+            }
             root.render(h(App));
         })
         .catch(function () {
             root.render(h('p', { className: 'load-error' },
-                'The projects could not load. Please refresh the page, or email jgraddin@calpoly.edu.'));
+                'This page could not load. Please refresh, or email jgraddin@calpoly.edu.'));
         });
 })();

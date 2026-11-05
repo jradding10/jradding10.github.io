@@ -1,0 +1,25 @@
+[
+  {
+    "id": "you-shall-not-pass",
+    "name": "You Shall Not Pass",
+    "tagline": "A digital lockbox for the Basys 3 FPGA board, written in SystemVerilog.",
+    "meta": "FPGA / 2021",
+    "tech": ["SystemVerilog", "VHDL", "FPGA", "Basys 3", "Finite state machines"],
+    "description": [
+      "You Shall Not Pass turns a Basys 3 FPGA board into a lockbox. You set a password of three digits from 0 to 7 using three switches, then try to enter it again. Get all three right, in order, and the seven-segment display reads OPEN. Get any wrong and it reads NOPE.",
+      "A create switch toggles between two sets of registers: one that stores the password and one that stores your guess. A finite state machine steps through the digits each time you press enter, lighting an LED for each one, and a comparator checks every guess against the stored password.",
+      "Built with a partner. The repository includes the SystemVerilog and VHDL source, the Basys 3 constraints file, the block diagrams and the final report."
+    ],
+    "repo": "https://github.com/jradding10/YouShallNotPass",
+    "download": { "label": "Download source (.zip)", "href": "https://github.com/jradding10/YouShallNotPass/archive/refs/heads/main.zip" },
+    "links": [
+      { "label": "Watch the demo (YouTube)", "href": "https://www.youtube.com/watch?v=Vn_OlbSvhmE" },
+      { "label": "Final report (PDF)", "href": "https://github.com/jradding10/YouShallNotPass/blob/main/Final%20Report.pdf" }
+    ],
+    "images": [
+      { "src": "images/apps/youshallnotpass/structural-diagram.jpg", "alt": "Structural diagram of the lockbox" },
+      { "src": "images/apps/youshallnotpass/high-level-fsm.jpg", "alt": "High-level diagram and state machine" },
+      { "src": "images/apps/youshallnotpass/structure-detail.jpg", "alt": "Detailed structure of the registers and comparator" }
+    ]
+  }
+]

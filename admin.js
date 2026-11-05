@@ -12,12 +12,14 @@
     var DOCS = [
         { key: 'site', path: 'site.json', label: 'page text' },
         { key: 'experience', path: 'experience.json', label: 'experience' },
-        { key: 'projects', path: 'projects.json', label: 'projects' }
+        { key: 'projects', path: 'projects.json', label: 'projects' },
+        { key: 'apps', path: 'apps.json', label: 'apps' }
     ];
     var TYPES = ['Project', 'Publication', 'Research'];
     var IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
     var FILE_TYPES = IMAGE_TYPES.concat(['application/pdf']);
     var MAX_UPLOAD_BYTES = 15 * 1024 * 1024;
+    var MAX_DOWNLOAD_BYTES = 25 * 1024 * 1024;
 
     /* ---------- Helpers ---------- */
 
@@ -124,6 +126,22 @@
                 return out;
             });
         },
+        apps: function (list) {
+            return list.map(function (a) {
+                return {
+                    id: a.id,
+                    name: (a.name || '').trim(),
+                    tagline: (a.tagline || '').trim(),
+                    meta: (a.meta || '').trim(),
+                    tech: trimList(a.tech),
+                    description: trimList(a.description),
+                    repo: (a.repo || '').trim(),
+                    download: { label: ((a.download || {}).label || '').trim(), href: ((a.download || {}).href || '').trim() },
+                    links: cleanLinks(a.links),
+                    images: (a.images || []).map(function (im) { return { src: im.src, alt: (im.alt || '').trim() }; })
+                };
+            });
+        },
         site: function (s) {
             return {
                 hero: {
@@ -138,10 +156,12 @@
                     intro: (s.about.intro || '').trim(),
                     paragraphs: trimList(s.about.paragraphs)
                 },
-                blog: {
-                    show: s.blog.show !== false,
-                    lead: (s.blog.lead || '').trim(),
-                    widgetUrl: (s.blog.widgetUrl || '').trim()
+                linkedin: {
+                    show: s.linkedin.show !== false,
+                    heading: (s.linkedin.heading || '').trim(),
+                    lead: (s.linkedin.lead || '').trim(),
+                    url: (s.linkedin.url || '').trim(),
+                    label: (s.linkedin.label || '').trim()
                 },
                 contact: {
                     heading: (s.contact.heading || '').trim(),
@@ -182,7 +202,22 @@
                 errors.push({ tab: 'experience', id: t.id, msg: 'Each experience entry needs a role and an organization.' });
             }
         });
+        var seenApp = {};
+        data.apps.forEach(function (a) {
+            var name = '\u201C' + ((a.name || '').trim() || a.id) + '\u201D';
+            var add = function (msg) { errors.push({ tab: 'apps', id: a.id, msg: msg }); };
+            if (!(a.name || '').trim()) add('An app is missing its name.');
+            if (!(a.tagline || '').trim()) add(name + ' needs a one-line description.');
+            if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(a.id)) add(name + ' has a link name with characters other than lowercase letters, numbers and dashes.');
+            if (seenApp[a.id]) add('Two apps share the link name \u201C' + a.id + '\u201D.');
+            seenApp[a.id] = true;
+            if ((a.repo || '').trim() && !/^https:\/\//.test(a.repo.trim())) add(name + ' has a GitHub address that should start with https://.');
+            linkProblems([a.download || {}], name + '\u2019s download').concat(linkProblems(a.links, name)).forEach(add);
+        });
         if (!(data.site.hero.name || '').trim()) errors.push({ tab: 'site', msg: 'The hero needs your name.' });
+        if (data.site.linkedin.show !== false && !/^https:\/\//.test((data.site.linkedin.url || '').trim())) {
+            errors.push({ tab: 'site', msg: 'The LinkedIn section needs your profile address, starting with https://.' });
+        }
         linkProblems(data.site.hero.buttons, 'The hero').concat(linkProblems(data.site.contact.buttons, 'The contact section'))
             .forEach(function (msg) { errors.push({ tab: 'site', msg: msg }); });
         return errors;
@@ -192,6 +227,18 @@
         var lines = [];
         if (changed.site) lines.push('Update page text');
         if (changed.experience) lines.push('Update experience');
+        if (changed.apps) {
+            var ba = {};
+            before.apps.forEach(function (a) { ba[a.id] = JSON.stringify(a); });
+            var aIds = after.apps.map(function (a) { return a.id; });
+            var na = lines.length;
+            after.apps.forEach(function (a) {
+                if (!(a.id in ba)) lines.push('Add app ' + a.name);
+                else if (ba[a.id] !== JSON.stringify(a)) lines.push('Edit app ' + a.name);
+            });
+            before.apps.forEach(function (a) { if (aIds.indexOf(a.id) === -1) lines.push('Remove app ' + a.name); });
+            if (lines.length === na) lines.push('Reorder apps');
+        }
         if (changed.projects) {
             var b = {};
             before.projects.forEach(function (p) { b[p.id] = JSON.stringify(p); });
@@ -388,7 +435,7 @@
         }
 
         return h(Field, { label: 'Images', hint: 'The first image is shown first. Describe each one in a few words; that text is the caption.', wide: true },
-            images.length === 0 && h('p', { className: 'empty-note' }, 'No images yet. Projects without images show a blue title card.'),
+            images.length === 0 && h('p', { className: 'empty-note' }, 'No images yet. Without one, a blue title card is shown.'),
             h('ul', { className: 'img-list' },
                 images.map(function (im, i) {
                     return h('li', { key: im.src + i, className: 'img-row' },
@@ -531,6 +578,54 @@
         );
     }
 
+    function AppForm(props) {
+        var a = props.item, change = props.change;
+        var dl = a.download || { label: '', href: '' };
+        var eS = useState(''), error = eS[0], setError = eS[1];
+        function setDl(key, val) { var next = Object.assign({}, dl); next[key] = val; change({ download: next }); }
+        return h('form', { className: 'pform', onSubmit: function (e) { e.preventDefault(); } },
+            h('div', { className: 'pform-head' },
+                h('p', { className: 'kicker' }, a._new ? 'New app' : 'Editing app'),
+                h('h2', null, a.name || 'Untitled app')),
+            h('div', { className: 'grid' },
+                h(Text, {
+                    id: 'a-name', label: 'Name', value: a.name, placeholder: 'e.g. You Shall Not Pass',
+                    onChange: function (v) { var patch = { name: v }; if (a._autoId) patch.id = slugify(v) || a.id; change(patch); }
+                }),
+                h(Text, { id: 'a-meta', label: 'Label', hint: 'Short context, e.g. FPGA / 2021 or Python.', value: a.meta, onChange: function (v) { change({ meta: v }); } }),
+                h(Text, { id: 'a-tagline', label: 'One-line description', hint: 'Shown on the app\u2019s card.', wide: true, maxLength: 200, value: a.tagline, onChange: function (v) { change({ tagline: v }); } }),
+                h(ListText, { key: a.id + '-tech', id: 'a-tech', label: 'Languages and tools', hint: 'Separate with commas.', wide: true, mode: 'tags', placeholder: 'Python, React, SystemVerilog', value: a.tech, onChange: function (v) { change({ tech: v }); } }),
+                h(Text, { id: 'a-repo', label: 'GitHub repository', hint: 'Paste the repository\u2019s web address. Visitors get a \u201CView on GitHub\u201D button.', wide: true, value: a.repo, placeholder: 'https://github.com/jradding10/\u2026', onChange: function (v) { change({ repo: v }); } }),
+                h(Field, { label: 'Download', wide: true, hint: 'Upload a file (up to 25 MB), or paste a link such as a GitHub release or the repository\u2019s .zip (add /archive/refs/heads/main.zip to the repository address).' },
+                    h('div', { className: 'link-row' },
+                        h('label', { htmlFor: 'a-dl-label', className: 'sr' }, 'Download button text'),
+                        h('input', { id: 'a-dl-label', value: dl.label, placeholder: 'Button text, e.g. Download (.zip)', onChange: function (e) { setDl('label', e.target.value); } }),
+                        h('label', { htmlFor: 'a-dl-href', className: 'sr' }, 'Download address'),
+                        h('input', { id: 'a-dl-href', value: dl.href, placeholder: 'https://\u2026 or upload a file', onChange: function (e) { setDl('href', e.target.value); } }),
+                        h('div', { className: 'row-tools' },
+                            h(UploadButton, {
+                                label: 'Upload', className: 'tool-btn', accept: ['*/*'],
+                                onFiles: function (files) {
+                                    setError('');
+                                    props.upload(files[0], 'downloads/' + a.id, 'any').then(function (path) {
+                                        change({ download: { label: dl.label || 'Download ' + files[0].name, href: path } });
+                                    }).catch(function (err) { setError(err.message); });
+                                }
+                            }),
+                            (dl.label || dl.href) && h('button', { type: 'button', 'aria-label': 'Clear download', onClick: function () { change({ download: { label: '', href: '' } }); } }, '\u00D7'))),
+                    error && h('p', { className: 'form-error', role: 'alert' }, error)),
+                h(ListText, { key: a.id + '-desc', id: 'a-desc', label: 'Details', hint: 'Shown when a visitor opens the card. Leave a blank line between paragraphs.', wide: true, mode: 'paragraphs', rows: 10, value: a.description, onChange: function (v) { change({ description: v }); } }),
+                h(ImagesEditor, { images: a.images, folder: 'images/apps/' + a.id, upload: props.upload, preview: props.preview, isPending: props.isPending, onChange: function (v) { change({ images: v }); } }),
+                h(LinksEditor, { prefix: 'a-link', label: 'More links', hint: 'Demo videos, reports or a live version.', links: a.links, upload: props.upload, onChange: function (v) { change({ links: v }); } }),
+                h(Text, {
+                    id: 'a-id', label: 'Link name', wide: true, readOnly: !a._new, value: a.id,
+                    hint: 'Used in the app\u2019s web address (apps.html?app=' + (a.id || '\u2026') + ').' + (a._new ? ' Lowercase letters, numbers and dashes.' : ' Locked for published apps so existing links keep working.'),
+                    onChange: function (v) { change({ id: v.toLowerCase(), _autoId: false }); }
+                })
+            )
+        );
+    }
+
     function SiteForm(props) {
         var s = props.site;
         function set(section, key, val) {
@@ -577,14 +672,16 @@
                     h(ListText, { id: 's-about', label: 'Paragraphs', hint: 'Leave a blank line between paragraphs.', wide: true, mode: 'paragraphs', value: s.about.paragraphs, onChange: function (v) { set('about', 'paragraphs', v); } })
                 )),
             h('fieldset', null,
-                h('legend', null, 'Blog'),
+                h('legend', null, 'LinkedIn'),
                 h('div', { className: 'grid' },
-                    h(Field, { label: 'Show the blog section', wide: true },
-                        h('label', { className: 'check', htmlFor: 's-blog-show' },
-                            h('input', { id: 's-blog-show', type: 'checkbox', checked: s.blog.show !== false, onChange: function (e) { set('blog', 'show', e.target.checked); } }),
-                            ' Show it on the page and in the menu')),
-                    h(Text, { id: 's-blog-lead', label: 'Intro line', wide: true, value: s.blog.lead, onChange: function (v) { set('blog', 'lead', v); } }),
-                    h(Text, { id: 's-blog-url', label: 'LinkedIn widget address', hint: 'From SociableKit.', wide: true, value: s.blog.widgetUrl, onChange: function (v) { set('blog', 'widgetUrl', v); } })
+                    h(Field, { label: 'Show the LinkedIn section', wide: true },
+                        h('label', { className: 'check', htmlFor: 's-li-show' },
+                            h('input', { id: 's-li-show', type: 'checkbox', checked: s.linkedin.show !== false, onChange: function (e) { set('linkedin', 'show', e.target.checked); } }),
+                            ' Show the band between Projects and Contact')),
+                    h(Text, { id: 's-li-url', label: 'Profile address', wide: true, value: s.linkedin.url, placeholder: 'https://www.linkedin.com/in/\u2026', onChange: function (v) { set('linkedin', 'url', v); } }),
+                    h(Text, { id: 's-li-heading', label: 'Heading', value: s.linkedin.heading, onChange: function (v) { set('linkedin', 'heading', v); } }),
+                    h(Text, { id: 's-li-label', label: 'Button text', value: s.linkedin.label, onChange: function (v) { set('linkedin', 'label', v); } }),
+                    h(Text, { id: 's-li-lead', label: 'Line under the heading', wide: true, value: s.linkedin.lead, onChange: function (v) { set('linkedin', 'lead', v); } })
                 )),
             h('fieldset', null,
                 h('legend', null, 'Contact and footer'),
@@ -610,7 +707,10 @@
 
         var lS = useState({ state: 'loading' }), load = lS[0], setLoad = lS[1];
         var dS = useState(null), data = dS[0], setData = dS[1];
-        var tabS = useState('projects'), tab = tabS[0], setTab = tabS[1];
+        var wantTab = null;
+        try { wantTab = new URLSearchParams(window.location.search).get('tab'); } catch (e) { /* ignore */ }
+        var tabS = useState(['site', 'experience', 'projects', 'apps'].indexOf(wantTab) !== -1 ? wantTab : 'projects'), tab = tabS[0], setTab = tabS[1];
+        var selA = useState(null), selApp = selA[0], setSelApp = selA[1];
         var selP = useState(null), selProject = selP[0], setSelProject = selP[1];
         var selX = useState(null), selExp = selX[0], setSelExp = selX[1];
         var uS = useState({}), pending = uS[0], setPending = uS[1];
@@ -641,6 +741,8 @@
                     var p = next.projects;
                     setSelProject(p.some(function (x) { return x.id === want; }) ? want : (p[0] ? p[0].id : null));
                     setSelExp(next.experience[0] ? next.experience[0].id : null);
+                    var ap = next.apps;
+                    setSelApp(ap.some(function (x) { return x.id === want; }) ? want : (ap[0] ? ap[0].id : null));
                     setLoad({ state: 'ready' });
                 });
             }).catch(function (err) {
@@ -672,13 +774,16 @@
         }
 
         // Stage a file for upload. It is committed together with the text on Publish.
-        function upload(file, folder, imageOnly) {
-            var allowed = imageOnly ? IMAGE_TYPES : FILE_TYPES;
-            if (allowed.indexOf(file.type) === -1) {
-                return Promise.reject(new Error(file.name + (imageOnly ? ' is not a JPG, PNG, GIF or WebP image.' : ' is not a PDF or image.')));
+        // kind: true for images only, 'any' for downloadable files, otherwise PDFs and images.
+        function upload(file, folder, kind) {
+            var anyFile = kind === 'any';
+            var allowed = kind === true ? IMAGE_TYPES : FILE_TYPES;
+            if (!anyFile && allowed.indexOf(file.type) === -1) {
+                return Promise.reject(new Error(file.name + (kind === true ? ' is not a JPG, PNG, GIF or WebP image.' : ' is not a PDF or image.')));
             }
-            if (file.size > MAX_UPLOAD_BYTES) {
-                return Promise.reject(new Error(file.name + ' is larger than 15 MB. Make it smaller and try again.'));
+            var limit = anyFile ? MAX_DOWNLOAD_BYTES : MAX_UPLOAD_BYTES;
+            if (file.size > limit) {
+                return Promise.reject(new Error(file.name + ' is larger than ' + (limit / 1024 / 1024) + ' MB. Make it smaller, or attach it to a GitHub release and paste that link instead.'));
             }
             var name = fileSafeName(file.name);
             var path = folder + '/' + name;
@@ -706,6 +811,7 @@
                 setTab(first.tab);
                 if (first.tab === 'projects' && first.id) setSelProject(first.id);
                 if (first.tab === 'experience' && first.id) setSelExp(first.id);
+                if (first.tab === 'apps' && first.id) setSelApp(first.id);
                 setStatus({ kind: 'error', msg: errors.map(function (e) { return e.msg; }).join(' ') });
                 return;
             }
@@ -777,8 +883,10 @@
                     h('button', { className: 'btn small outline', onClick: props.onLogout }, 'Sign out')));
         }
 
-        var tabs = [['site', 'Page text'], ['experience', 'Experience'], ['projects', 'Projects']];
-        var viewHref = tab === 'projects' && selProject ? 'index.html?project=' + encodeURIComponent(selProject) + '#projects' : 'index.html#' + (tab === 'site' ? 'top' : tab);
+        var tabs = [['site', 'Page text'], ['experience', 'Experience'], ['projects', 'Projects'], ['apps', 'Apps']];
+        var viewHref = tab === 'apps'
+            ? 'apps.html' + (selApp ? '?app=' + encodeURIComponent(selApp) : '')
+            : tab === 'projects' && selProject ? 'index.html?project=' + encodeURIComponent(selProject) + '#projects' : 'index.html#' + (tab === 'site' ? 'top' : tab);
 
         return h('main', { className: 'wrap admin-main' },
             h('div', { className: 'publish-bar', role: 'region', 'aria-label': 'Publish' },
@@ -835,6 +943,23 @@
                 },
                 renderForm: function (item, change) {
                     return h(ProjectForm, { item: item, change: change, upload: upload, preview: preview, isPending: isPending });
+                }
+            }),
+            tab === 'apps' && h(ListEditor, {
+                items: data.apps, selected: selApp, onSelect: setSelApp,
+                onItems: function (v) { setDoc('apps', v); },
+                addLabel: '+ New app', deleteLabel: 'Remove this app',
+                titleOf: function (a) { return a.name || 'Untitled app'; },
+                subOf: function (a) { return [a.meta, (a.tech || []).slice(0, 2).join(', ')].filter(Boolean).join(' / ') + (a._new ? ' / new' : ''); },
+                onAdd: function () {
+                    var n = 1;
+                    while (data.apps.some(function (a) { return a.id === 'new-app-' + n; })) n++;
+                    var a = { id: 'new-app-' + n, name: '', tagline: '', meta: '', tech: [], description: [''], repo: '', download: { label: '', href: '' }, links: [], images: [], _new: true, _autoId: true };
+                    setDoc('apps', [a].concat(data.apps));
+                    setSelApp(a.id);
+                },
+                renderForm: function (item, change) {
+                    return h(AppForm, { item: item, change: change, upload: upload, preview: preview, isPending: isPending });
                 }
             })
         );

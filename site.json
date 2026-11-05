@@ -4,8 +4,14 @@
     "name": "Jacqueline Radding",
     "lede": "Quality comes first. I build hardware that is made right, ships on time and holds up in the field.",
     "buttons": [
-      { "label": "Browse projects", "href": "#projects" },
-      { "label": "Resume", "href": "resume_radding_2023.pdf" }
+      {
+        "label": "Browse projects",
+        "href": "#projects"
+      },
+      {
+        "label": "Resume",
+        "href": "resume_radding_2023.pdf"
+      }
     ]
   },
   "about": {
@@ -17,18 +23,33 @@
       "I graduated from Cal Poly San Luis Obispo with a master’s in electrical engineering in 2025. At Cal Poly, I served as the President of Cal Poly IEEE and worked as a Resident Advisor, mentoring fellow students. I specialized in digital communications and machine learning."
     ]
   },
-  "blog": {
+  "linkedin": {
     "show": true,
-    "lead": "Check out my latest posts and updates:",
-    "widgetUrl": "https://widgets.sociablekit.com/linkedin-profile-posts/iframe/25577547"
+    "heading": "Follow along on LinkedIn",
+    "lead": "I share project updates and career news on LinkedIn.",
+    "url": "https://www.linkedin.com/in/jacqueline-radding/",
+    "label": "Connect on LinkedIn"
   },
   "contact": {
     "heading": "Let’s build something.",
     "lead": "Reach out for collaborations, questions, or networking.",
     "buttons": [
-      { "label": "jgraddin@calpoly.edu", "href": "mailto:jgraddin@calpoly.edu" },
-      { "label": "Portfolium", "href": "https://portfolium.com/JacquelineRadd" },
-      { "label": "Resume (PDF)", "href": "resume_radding_2023.pdf" }
+      {
+        "label": "jgraddin@calpoly.edu",
+        "href": "mailto:jgraddin@calpoly.edu"
+      },
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/jacqueline-radding/"
+      },
+      {
+        "label": "Portfolium",
+        "href": "https://portfolium.com/JacquelineRadd"
+      },
+      {
+        "label": "Resume (PDF)",
+        "href": "resume_radding_2023.pdf"
+      }
     ]
   },
   "footer": "© 2025 Jacqueline Radding"

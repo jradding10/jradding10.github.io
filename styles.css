@@ -248,3 +248,47 @@ iframe { border: 1px solid var(--line); background: var(--white); display: block
 .foot-row a { color: rgba(255,255,255,0.8); }
 .about.no-photo { grid-template-columns: minmax(0, 1fr); }
 .load-error { max-width: 640px; margin: 96px auto; padding: 0 24px; font-size: 18px; }
+
+/* Shared buttons */
+.btn.outline { background: var(--white); color: var(--blue); border-color: var(--blue); }
+.btn.outline:hover { background: var(--blue-light); color: var(--blue); border-color: var(--blue); }
+.link-btn {
+    background: none; border: 0; padding: 0; color: var(--blue); font-weight: 700;
+    text-decoration: underline; text-underline-offset: 3px;
+}
+.link-btn:hover { color: var(--blue-bright); }
+.nav-links a.here::after { transform: scaleX(1); }
+.foot-links { display: flex; gap: 20px; }
+
+/* LinkedIn band */
+.linkedin-band { padding: 64px 0; }
+.linkedin-row { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+.linkedin-text { min-width: 0; max-width: 640px; }
+.linkedin-heading { font-size: clamp(26px, 4vw, 40px); line-height: 1.15; color: var(--blue-dark); margin: 4px 0 8px; text-transform: none; letter-spacing: -0.01em; }
+.linkedin-text .lead { margin-bottom: 0; }
+
+/* Apps page */
+.hero-sm .hero-inner { padding-top: 72px; padding-bottom: 24px; }
+.hero-sm h1 { font-size: clamp(48px, 9vw, 104px); }
+.hero-sm .wave { height: 110px; }
+.apps-search { max-width: 480px; margin-bottom: 32px; }
+.app-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 24px; align-items: start; }
+.app-card { background: var(--white); border: 1px solid var(--line); display: flex; flex-direction: column; min-width: 0; transition: border-color 0.2s; }
+.app-card:hover, .app-card.open { border-color: var(--blue); }
+.app-cover { width: 100%; aspect-ratio: 16 / 9; max-height: 340px; object-fit: contain; background: var(--blue-light); border-bottom: 1px solid var(--line); display: block; }
+.app-cover.plate { min-height: 0; }
+.app-body { padding: 24px 28px 28px; min-width: 0; }
+.app-body h2 { font-size: 26px; line-height: 1.2; color: var(--blue-dark); }
+.app-tagline { margin-top: 8px; color: var(--text); }
+.app-body .tags { margin-top: 16px; }
+.app-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 20px; }
+.app-actions .edit-link { margin-top: 0; }
+.app-more { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--line); }
+.app-more p + p { margin-top: 14px; }
+.app-more .gallery { margin-top: 20px; border: 1px solid var(--line); }
+.app-more .stage { padding: 12px 56px; min-height: 200px; }
+
+@media (max-width: 720px) {
+    .app-body { padding: 20px 16px 24px; }
+    .linkedin-band { padding: 48px 0; }
+}

@@ -6,14 +6,7 @@ body { background: var(--blue-light); }
 .admin-nav a { color: var(--text); }
 .admin-nav a:hover { color: var(--blue); }
 
-.link-btn {
-    background: none; border: 0; padding: 0; color: var(--blue); font-weight: 700;
-    text-decoration: underline; text-underline-offset: 3px;
-}
-.link-btn:hover { color: var(--blue-bright); }
-
-.btn.outline { background: var(--white); color: var(--blue); border-color: var(--blue); }
-.btn.outline:hover { background: var(--blue-light); color: var(--blue); border-color: var(--blue); transform: none; }
+.btn.outline:hover { transform: none; }
 .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 .btn.danger-btn { background: #B42318; border-color: #B42318; }
 .btn.danger-btn:hover { background: #8F1C13; border-color: #8F1C13; }
