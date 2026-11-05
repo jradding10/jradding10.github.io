@@ -117,12 +117,12 @@
     function Nav() {
         var open = useState(false);
         var isOpen = open[0], setOpen = open[1];
-        var home = PAGE === 'home' ? '' : 'index.html';
+        var home = PAGE === 'home' ? '' : '/';
         var links = [
             ['about', 'About', home + '#about'],
             ['experience', 'Experience', home + '#experience'],
             ['projects', 'Projects', home + '#projects'],
-            ['apps', 'Apps', 'apps.html'],
+            ['apps', 'Apps', '/apps/'],
             ['contact', 'Contact', '#contact']
         ];
         return h('nav', { className: 'nav' },

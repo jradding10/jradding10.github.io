@@ -619,7 +619,7 @@
                 h(LinksEditor, { prefix: 'a-link', label: 'More links', hint: 'Demo videos, reports or a live version.', links: a.links, upload: props.upload, onChange: function (v) { change({ links: v }); } }),
                 h(Text, {
                     id: 'a-id', label: 'Link name', wide: true, readOnly: !a._new, value: a.id,
-                    hint: 'Used in the app\u2019s web address (apps.html?app=' + (a.id || '\u2026') + ').' + (a._new ? ' Lowercase letters, numbers and dashes.' : ' Locked for published apps so existing links keep working.'),
+                    hint: 'Used in the app\u2019s web address (jacquelineradding.com/apps/?app=' + (a.id || '\u2026') + ').' + (a._new ? ' Lowercase letters, numbers and dashes.' : ' Locked for published apps so existing links keep working.'),
                     onChange: function (v) { change({ id: v.toLowerCase(), _autoId: false }); }
                 })
             )
@@ -885,7 +885,7 @@
 
         var tabs = [['site', 'Page text'], ['experience', 'Experience'], ['projects', 'Projects'], ['apps', 'Apps']];
         var viewHref = tab === 'apps'
-            ? 'apps.html' + (selApp ? '?app=' + encodeURIComponent(selApp) : '')
+            ? '/apps/' + (selApp ? '?app=' + encodeURIComponent(selApp) : '')
             : tab === 'projects' && selProject ? 'index.html?project=' + encodeURIComponent(selProject) + '#projects' : 'index.html#' + (tab === 'site' ? 'top' : tab);
 
         return h('main', { className: 'wrap admin-main' },
