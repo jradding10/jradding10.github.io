@@ -237,3 +237,14 @@ iframe { border: 1px solid var(--line); background: var(--white); display: block
     .tl-when { text-align: left; padding: 0 0 8px 32px; }
     .tl-card { margin-left: 32px; padding: 20px 16px; }
 }
+
+/* Admin hooks and data loading */
+.edit-link {
+    display: inline-block; margin-top: 12px; font-size: 13px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.08em; border: 1px solid var(--blue); padding: 4px 10px;
+}
+.edit-link:hover { background: var(--blue); color: var(--white); }
+.foot-row { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.foot-row a { color: rgba(255,255,255,0.8); }
+.about.no-photo { grid-template-columns: minmax(0, 1fr); }
+.load-error { max-width: 640px; margin: 96px auto; padding: 0 24px; font-size: 18px; }

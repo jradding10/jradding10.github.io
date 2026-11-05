@@ -1,0 +1,35 @@
+{
+  "hero": {
+    "eyebrow": "Hardware Engineer / M.S. Cal Poly SLO 2025",
+    "name": "Jacqueline Radding",
+    "lede": "Quality comes first. I build hardware that is made right, ships on time and holds up in the field.",
+    "buttons": [
+      { "label": "Browse projects", "href": "#projects" },
+      { "label": "Resume", "href": "resume_radding_2023.pdf" }
+    ]
+  },
+  "about": {
+    "photo": "images/aboutmep.jpg",
+    "photoAlt": "Jacqueline Radding",
+    "intro": "It’s nice to meet you. My name is Jacqueline, and I’m a hardware engineer.",
+    "paragraphs": [
+      "At Cisco, I work on hyperscaler network switches, applying design for manufacturability (DFM) to get hardware built reliably at scale. My focus is lowering cost while maintaining quality and supply chain resilience, so we deliver every time.",
+      "I graduated from Cal Poly San Luis Obispo with a master’s in electrical engineering in 2025. At Cal Poly, I served as the President of Cal Poly IEEE and worked as a Resident Advisor, mentoring fellow students. I specialized in digital communications and machine learning."
+    ]
+  },
+  "blog": {
+    "show": true,
+    "lead": "Check out my latest posts and updates:",
+    "widgetUrl": "https://widgets.sociablekit.com/linkedin-profile-posts/iframe/25577547"
+  },
+  "contact": {
+    "heading": "Let’s build something.",
+    "lead": "Reach out for collaborations, questions, or networking.",
+    "buttons": [
+      { "label": "jgraddin@calpoly.edu", "href": "mailto:jgraddin@calpoly.edu" },
+      { "label": "Portfolium", "href": "https://portfolium.com/JacquelineRadd" },
+      { "label": "Resume (PDF)", "href": "resume_radding_2023.pdf" }
+    ]
+  },
+  "footer": "© 2025 Jacqueline Radding"
+}

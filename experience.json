@@ -1,0 +1,62 @@
+[
+  {
+    "id": "cisco",
+    "when": "Aug 2025 – Present",
+    "role": "Product Engineer",
+    "org": "Cisco",
+    "lead": true,
+    "points": [
+      "Work on hyperscaler network switches, taking hardware from design through to volume manufacturing.",
+      "Apply design for manufacturability (DFM) so boards and systems can be built reliably and at scale.",
+      "Focus on lowering cost while holding quality and supply chain resilience, so we deliver every time."
+    ],
+    "tags": [
+      "Hyperscalers",
+      "Network switches",
+      "Manufacturing engineering",
+      "DFM",
+      "Supply chain"
+    ]
+  },
+  {
+    "id": "calpoly",
+    "when": "2025",
+    "role": "M.S. Electrical Engineering",
+    "org": "Cal Poly San Luis Obispo",
+    "points": [
+      "Specialized in digital communications and machine learning. President of Cal Poly IEEE and a Resident Advisor, mentoring fellow students."
+    ],
+    "tags": [
+      "Digital communications",
+      "Machine learning",
+      "Leadership"
+    ]
+  },
+  {
+    "id": "ti",
+    "when": "2024",
+    "role": "Internship",
+    "org": "Texas Instruments",
+    "points": [
+      "Built an automated voltage spike checker. Designed and automated PCB tests, reducing manual labor by 50% and improving program efficiency."
+    ],
+    "tags": [
+      "PCB",
+      "Test automation"
+    ]
+  },
+  {
+    "id": "hpe",
+    "when": "2023",
+    "role": "FCC Compliance Simulation Internship",
+    "org": "Hewlett Packard Enterprise",
+    "points": [
+      "Simulated radiated emissions and implemented solutions to achieve FCC compliance in hybrid cloud products."
+    ],
+    "tags": [
+      "EMC",
+      "Simulation",
+      "FCC"
+    ]
+  }
+]

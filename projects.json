@@ -1,0 +1,276 @@
+[
+  {
+    "id": "sdr-images",
+    "type": "Project",
+    "meta": "EE 504",
+    "title": "Images Over SDRs",
+    "full": "Transmitting Images Over SDRs With GNU Radio and Simulink",
+    "tags": [
+      "SDR",
+      "GNU Radio",
+      "Simulink",
+      "Modulation"
+    ],
+    "summary": "Raspberry Pi SDRs sending an image over air with BPSK, QPSK and 16QAM.",
+    "body": [
+      "Used Raspberry Pi SDRs to compare different modulation schemes (BPSK, QPSK, 16QAM) to find the maximum distance they could send an image to another SDR using GNU Radio and Simulink.",
+      "The first image shows an image sent over air to another SDR using BPSK. The second shows the same using 16QAM, which does not perform well because of its smaller decision boundaries. The third and fourth images are the code flow diagrams of the receiver and transmitter."
+    ],
+    "images": [
+      {
+        "src": "images/gnuproj/BPSK_SNR12.JPG",
+        "alt": "BPSK image transmission result"
+      },
+      {
+        "src": "images/gnuproj/64QAM_SNR16.JPG",
+        "alt": "16QAM image transmission result"
+      },
+      {
+        "src": "images/gnuproj/recieve_flow.JPG",
+        "alt": "Receiver flow diagram"
+      },
+      {
+        "src": "images/gnuproj/transmit_flow.JPG",
+        "alt": "Transmitter flow diagram"
+      }
+    ],
+    "links": [
+      {
+        "label": "Lab Notebook (PDF)",
+        "href": "pdfs/EE 504 Software Defined Radio Lab Notebook (9).pdf"
+      },
+      {
+        "label": "SDR Modulation Final Report (PDF)",
+        "href": "pdfs/EE 504 Software Defined Radio Final Project (1).pdf"
+      }
+    ]
+  },
+  {
+    "id": "lpf-10mhz",
+    "type": "Project",
+    "meta": "EE 425",
+    "title": "10 MHz Low Pass Filter",
+    "full": "10 MHz Low Pass Filter Simulation",
+    "tags": [
+      "RF",
+      "PCB",
+      "Keysight ADS",
+      "VNA"
+    ],
+    "summary": "Designed in Keysight ADS, built on an OSH Park PCB and measured on a VNA.",
+    "body": [
+      "A 10 MHz low pass filter built in Keysight ADS. The filter was ordered on OSH Park PCB and had its S-parameter magnitude and phase tested on a VNA. Impedance was also tested.",
+      "Use the arrows to move through the simulation and results images."
+    ],
+    "images": [
+      {
+        "src": "images/keysight1.PNG",
+        "alt": "Filter layout"
+      },
+      {
+        "src": "images/copper.png",
+        "alt": "Copper layer"
+      },
+      {
+        "src": "images/keysight2.PNG",
+        "alt": "Schematic design"
+      },
+      {
+        "src": "images/keysight3.PNG",
+        "alt": "PCB"
+      },
+      {
+        "src": "images/keysight4.PNG",
+        "alt": "S-parameter magnitude of ordered PCB"
+      },
+      {
+        "src": "images/keysight5.PNG",
+        "alt": "S-parameter phase"
+      },
+      {
+        "src": "images/keysight6.PNG",
+        "alt": "Impedance Smith chart"
+      }
+    ],
+    "links": [
+      {
+        "label": "Full Project Details (PDF)",
+        "href": "pdfs/EE425_LPF_DATA.pdf"
+      }
+    ]
+  },
+  {
+    "id": "costas-loop",
+    "type": "Project",
+    "meta": "Simulink",
+    "title": "Costas Loop BPSK Receiver",
+    "full": "Simulink Costas Loop BPSK",
+    "tags": [
+      "Simulink",
+      "Digital comms",
+      "BPSK",
+      "Synchronization"
+    ],
+    "summary": "A receiver that locks onto a 200 kHz carrier and demodulates 10 kbps BPSK.",
+    "body": [
+      "A receiver was designed to synchronize and demodulate 10 kbps data modulated using BPSK with a nominal 200 kHz carrier. The transmitter consistently begins with a pilot signal consisting of ten consecutive ‘1’ bits, followed by the data stream.",
+      "The first image shows a test harness with configurable parameters, allowing adjustments to phase, frequency, and angle drift. The second illustrates a Costas loop, implemented to correct frequency bias and phase offset. The Costas loop locks onto the signal’s center frequency, downconverting it to baseband by generating a local, in-phase replica of the carrier, multiplying it with the received signal, and then filtering the result through a low-pass filter.",
+      "The third image depicts a voltage-controlled oscillator (VCO) that generates a local carrier signal aligned with the phase of the received signal. The fourth shows a sample-and-hold system designed to detect the pilot signal, triggering the receiver to process the incoming data once the pilot is successfully identified."
+    ],
+    "images": [
+      {
+        "src": "images/Testharness.PNG",
+        "alt": "Test harness"
+      },
+      {
+        "src": "images/lecostasloop/lecostas.PNG",
+        "alt": "Costas loop"
+      },
+      {
+        "src": "images/VCO.PNG",
+        "alt": "Voltage controlled oscillator"
+      },
+      {
+        "src": "images/lecostasloop/sampleandhold system.PNG",
+        "alt": "Sample and hold system"
+      }
+    ],
+    "links": []
+  },
+  {
+    "id": "sonar-449",
+    "type": "Project",
+    "meta": "EE 449",
+    "title": "Ultrasonic Sonar Range Finder",
+    "full": "Sonar Device for EE 449, Electronics Design Laboratory",
+    "tags": [
+      "Analog",
+      "PLL",
+      "Op-amp",
+      "Oscillators",
+      "Arduino"
+    ],
+    "summary": "A 40 kHz ultrasonic range finder on a single 9 V battery, from crystal oscillator to PLL tone detector.",
+    "body": [
+      "A short-range sonar built for EE 449, Electronics Design Laboratory. It sends a burst of 40 kHz wavelets from an ultrasonic transducer, listens for the echo, and measures the delay to work out distance. The whole system runs from a single 9 V battery.",
+      "Built with two teammates. I designed the one-shot and gating circuit, a CMOS 555 timer driving a bilateral switch, and the 40 kHz Pierce crystal oscillator. Together they shape each transmit burst into a clean train of square pulses.",
+      "We started by characterizing the transducer pair: sweeping 35 to 45 kHz and fitting a 4th order bandpass response gave a peak at 40 kHz and a Q of about 45. On the receive side, an op-amp stage amplifies the weak echo (40 dB was the balance between gain and noise) and an LM567 PLL tone detector pulls its output low when it locks onto the returning 40 kHz wavelet.",
+      "An op-amp voltage follower on a resistor divider makes a 4.5 V mid-rail from the 9 V battery. An Arduino Uno fires the transmit pulse, catches the PLL output with an external interrupt, times the round trip with micros(), and prints the one-way distance to the serial monitor.",
+      "The finished range finder reports distances from roughly 0.2 m to 2 m. It is a working proof of concept, and the small accuracy errors we saw were traced to crossed wires picking up interference.",
+      "Not in the original plan: a BJT stage to translate the Arduino’s 5 V output up to the 9 V circuit, a pull-up resistor to stop a floating pin in the gating circuit, and a BJT buffer ahead of the transmit driver to clean up the signal.",
+      "Lessons learned: photograph the circuit before moving it, update the group on progress every week, check for floating pins, and keep the rails consistent."
+    ],
+    "images": [],
+    "links": [
+      {
+        "label": "Watch the demo (video)",
+        "href": "https://drive.google.com/file/d/1cfSh94StYJ8DoKAccLk5jVh52jKbCF9A/view?usp=sharing"
+      },
+      {
+        "label": "Final demo slides (Google Slides)",
+        "href": "https://docs.google.com/presentation/d/1wnjcF6iFt3uaiNqHBQvFQblhHx0SuW3g397f9eBPI28/view"
+      }
+    ]
+  },
+  {
+    "id": "aeroaccel",
+    "type": "Project",
+    "meta": "EE 329",
+    "title": "Aeroaccel G-Force Trigger",
+    "full": "Aeroaccel: An Accelerometer-Triggered Servo on an STM32",
+    "tags": [
+      "STM32",
+      "Embedded C",
+      "I2C",
+      "PWM",
+      "UART"
+    ],
+    "summary": "An STM32 that reads G-force from an accelerometer and moves a servo at 0.5, 1 and 2 G.",
+    "body": [
+      "Aeroaccel was the final project for EE 329, Microprocessor-based Systems Design. It watches acceleration on an RC plane and moves a servo as the load passes 0.5, 1 and 2 G. The idea is for that servo to release a CO2 canister and make the kind of steam trail you see off fighter jets. We did not fly the canister, so the servo is the proof of concept.",
+      "An STM32L476 Nucleo board reads an MPU-6050 accelerometer over I2C. A timer interrupt drives an SG90 servo with a PWM signal, four LEDs show how many G’s have been detected, and a UART link prints the reading to a terminal. The device and its code work as intended.",
+      "I worked with a partner on this one. I handled the accelerometer, the timer and MCU schematics, the proposal and the presentation. One revision dropped the LCD readout because it would not fit on the test setup, and the LEDs and UART took over that job."
+    ],
+    "images": [],
+    "links": []
+  },
+  {
+    "id": "bacteria-ml",
+    "type": "Project",
+    "meta": "EE 509",
+    "title": "Bacteria Classification",
+    "full": "Bacteria Classification With Deep Neural Networks",
+    "tags": [
+      "Deep learning",
+      "Computer vision",
+      "MATLAB",
+      "PyTorch",
+      "SqueezeNet"
+    ],
+    "summary": "SqueezeNet and GoogLeNet compared on microscope images of four bacteria, plus a circle-finding network.",
+    "body": [
+      "The final project for EE 509, Computational Intelligence. The motivation is medical: antibiotic-resistant bacteria such as MRSA show up as round shapes in microscope images, so a network that can name the strain and find the cells could help quantify contamination and growth.",
+      "The project had two halves, and I led the classification half. I retrained two pretrained networks in MATLAB, the lightweight SqueezeNet and the larger GoogLeNet, to tell four bacteria apart: S. aureus, Proteus, Micrococcus and Listeria, using images from the DiBaS dataset. Data was split 70/15/15 for training, validation and testing, and training used the Adam optimizer with image augmentation.",
+      "Both networks classified the four species with better than 90% validation accuracy, with SqueezeNet landing around 98% and GoogLeNet around 92%. SqueezeNet is small enough to run on a lab laptop. When we added a fifth class, accuracy dropped for both, which points to needing far more training images and epochs before this scales to many species.",
+      "My partner took the second half: a PyTorch convolutional network that finds the centers of three colored circles in 10,000 synthetic images, modeled on the DeepPose pose-estimation paper. Those results were preliminary, and the report lays out the next steps, such as a larger network or a cascade of them."
+    ],
+    "images": [],
+    "links": [
+      {
+        "label": "Read the full report (Google Docs)",
+        "href": "https://docs.google.com/document/d/14cCjh7tk_8FPD6eS1rb87f28Ir0p4mbSeqT30OXseOE/view"
+      }
+    ]
+  },
+  {
+    "id": "asee-paper",
+    "type": "Publication",
+    "meta": "2024",
+    "title": "Industrial Power and Control Lab",
+    "full": "Development of a Laboratory Course in Industrial Power and Control",
+    "tags": [
+      "PLC",
+      "Education",
+      "ASEE"
+    ],
+    "summary": "Published at ASEE PSW Conference 2024, Las Vegas, NV.",
+    "body": [
+      "Publication: ASEE PSW Conference 2024, Las Vegas, NV.",
+      "This paper discusses the design and implementation of an industrial power and control PLC lab for Electrical Engineers."
+    ],
+    "images": [],
+    "links": [
+      {
+        "label": "Read the paper (ASEE)",
+        "href": "https://peer.asee.org/development-of-a-laboratory-course-in-industrial-power-and-control-for-electrical-engineers"
+      }
+    ]
+  },
+  {
+    "id": "thesis",
+    "type": "Research",
+    "meta": "2024 / 2025",
+    "title": "Master Thesis: Connected Vehicles",
+    "full": "Master Thesis: Connected Autonomous Vehicles",
+    "tags": [
+      "Machine learning",
+      "V2V",
+      "Digital comms"
+    ],
+    "summary": "Machine learning to optimize V2V communication systems.",
+    "body": [
+      "Using machine learning to optimize V2V digital communication systems."
+    ],
+    "images": [],
+    "links": [
+      {
+        "label": "Read the thesis (Cal Poly Digital Commons)",
+        "href": "https://digitalcommons.calpoly.edu/theses/3115/"
+      },
+      {
+        "label": "View the thesis slides (Google Slides)",
+        "href": "https://docs.google.com/presentation/d/12b5lJT-Eydzdcb8EUwnsdM3ceCfxGHsL/edit?usp=sharing&ouid=115642118826029580243&rtpof=true&sd=true"
+      }
+    ]
+  }
+]
