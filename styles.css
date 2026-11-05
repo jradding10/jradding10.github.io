@@ -261,11 +261,11 @@ iframe { border: 1px solid var(--line); background: var(--white); display: block
 .foot-links { display: flex; gap: 20px; }
 
 /* LinkedIn band */
-.linkedin-band { padding: 64px 0; }
 .linkedin-row { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
 .linkedin-text { min-width: 0; max-width: 640px; }
-.linkedin-heading { font-size: clamp(26px, 4vw, 40px); line-height: 1.15; color: var(--blue-dark); margin: 4px 0 8px; text-transform: none; letter-spacing: -0.01em; }
+.linkedin-heading { font-size: clamp(26px, 4vw, 40px); font-weight: 700; line-height: 1.15; color: var(--blue-dark); margin: 4px 0 8px; text-transform: none; letter-spacing: -0.01em; }
 .linkedin-text .lead { margin-bottom: 0; }
+.blog-feed { margin-top: 32px; }
 
 /* Apps page */
 .hero-sm .hero-inner { padding-top: 72px; padding-bottom: 24px; }
@@ -290,5 +290,4 @@ iframe { border: 1px solid var(--line); background: var(--white); display: block
 
 @media (max-width: 720px) {
     .app-body { padding: 20px 16px 24px; }
-    .linkedin-band { padding: 48px 0; }
 }

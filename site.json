@@ -26,9 +26,10 @@
   "linkedin": {
     "show": true,
     "heading": "Follow along on LinkedIn",
-    "lead": "I share project updates and career news on LinkedIn.",
+    "lead": "Check out my latest posts and updates:",
     "url": "https://www.linkedin.com/in/jacqueline-radding/",
-    "label": "Connect on LinkedIn"
+    "label": "Connect on LinkedIn",
+    "widgetUrl": "https://widgets.sociablekit.com/linkedin-profile-posts/iframe/25577547"
   },
   "contact": {
     "heading": "Let’s build something.",

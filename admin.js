@@ -161,7 +161,8 @@
                     heading: (s.linkedin.heading || '').trim(),
                     lead: (s.linkedin.lead || '').trim(),
                     url: (s.linkedin.url || '').trim(),
-                    label: (s.linkedin.label || '').trim()
+                    label: (s.linkedin.label || '').trim(),
+                    widgetUrl: (s.linkedin.widgetUrl || '').trim()
                 },
                 contact: {
                     heading: (s.contact.heading || '').trim(),
@@ -216,7 +217,7 @@
         });
         if (!(data.site.hero.name || '').trim()) errors.push({ tab: 'site', msg: 'The hero needs your name.' });
         if (data.site.linkedin.show !== false && !/^https:\/\//.test((data.site.linkedin.url || '').trim())) {
-            errors.push({ tab: 'site', msg: 'The LinkedIn section needs your profile address, starting with https://.' });
+            errors.push({ tab: 'site', msg: 'The blog section needs your LinkedIn profile address, starting with https://.' });
         }
         linkProblems(data.site.hero.buttons, 'The hero').concat(linkProblems(data.site.contact.buttons, 'The contact section'))
             .forEach(function (msg) { errors.push({ tab: 'site', msg: msg }); });
@@ -672,16 +673,17 @@
                     h(ListText, { id: 's-about', label: 'Paragraphs', hint: 'Leave a blank line between paragraphs.', wide: true, mode: 'paragraphs', value: s.about.paragraphs, onChange: function (v) { set('about', 'paragraphs', v); } })
                 )),
             h('fieldset', null,
-                h('legend', null, 'LinkedIn'),
+                h('legend', null, 'Blog and LinkedIn'),
                 h('div', { className: 'grid' },
-                    h(Field, { label: 'Show the LinkedIn section', wide: true },
+                    h(Field, { label: 'Show the blog section', wide: true },
                         h('label', { className: 'check', htmlFor: 's-li-show' },
                             h('input', { id: 's-li-show', type: 'checkbox', checked: s.linkedin.show !== false, onChange: function (e) { set('linkedin', 'show', e.target.checked); } }),
-                            ' Show the band between Projects and Contact')),
+                            ' Show it between Projects and Contact, and in the menu')),
                     h(Text, { id: 's-li-url', label: 'Profile address', wide: true, value: s.linkedin.url, placeholder: 'https://www.linkedin.com/in/\u2026', onChange: function (v) { set('linkedin', 'url', v); } }),
                     h(Text, { id: 's-li-heading', label: 'Heading', value: s.linkedin.heading, onChange: function (v) { set('linkedin', 'heading', v); } }),
                     h(Text, { id: 's-li-label', label: 'Button text', value: s.linkedin.label, onChange: function (v) { set('linkedin', 'label', v); } }),
-                    h(Text, { id: 's-li-lead', label: 'Line under the heading', wide: true, value: s.linkedin.lead, onChange: function (v) { set('linkedin', 'lead', v); } })
+                    h(Text, { id: 's-li-lead', label: 'Line under the heading', wide: true, value: s.linkedin.lead, onChange: function (v) { set('linkedin', 'lead', v); } }),
+                    h(Text, { id: 's-li-widget', label: 'LinkedIn posts widget address', hint: 'From SociableKit. Leave blank to show only the button.', wide: true, value: s.linkedin.widgetUrl, onChange: function (v) { set('linkedin', 'widgetUrl', v); } })
                 )),
             h('fieldset', null,
                 h('legend', null, 'Contact and footer'),

@@ -123,8 +123,9 @@
             ['experience', 'Experience', home + '#experience'],
             ['projects', 'Projects', home + '#projects'],
             ['apps', 'Apps', '/apps/'],
+            ['blog', 'Blog', home + '#blog'],
             ['contact', 'Contact', '#contact']
-        ];
+        ].filter(function (l) { return l[0] !== 'blog' || !SITE.linkedin || SITE.linkedin.show !== false; });
         return h('nav', { className: 'nav' },
             h('div', { className: 'wrap nav-row' },
                 h('a', { className: 'logo', href: home + '#top' }, 'JR', h('span', null, ' / Jacqueline Radding')),
@@ -377,16 +378,21 @@
         );
     }
 
-    function LinkedIn() {
+    // LinkedIn profile link plus the embedded feed of recent posts.
+    function Blog() {
         var li = SITE.linkedin || {};
-        if (li.show === false || !li.url) return null;
-        return h('section', { id: 'linkedin', className: 'section alt linkedin-band' },
-            h('div', { className: 'wrap linkedin-row' },
-                h('div', { className: 'linkedin-text' },
-                    h('p', { className: 'kicker' }, 'LinkedIn'),
-                    li.heading && h('h2', { className: 'linkedin-heading' }, li.heading),
-                    li.lead && h('p', { className: 'lead' }, li.lead)),
-                h('a', { className: 'btn small', href: li.url, target: '_blank', rel: 'noopener' }, (li.label || 'Connect on LinkedIn') + ' ↗')
+        if (li.show === false) return null;
+        return h('section', { id: 'blog', className: 'section alt' },
+            h('div', { className: 'wrap' },
+                h('h2', { className: 'section-title' }, h('span', null, 'Blog')),
+                h('div', { className: 'linkedin-row' },
+                    h('div', { className: 'linkedin-text' },
+                        li.heading && h('p', { className: 'linkedin-heading' }, li.heading),
+                        li.lead && h('p', { className: 'lead' }, li.lead)),
+                    li.url && h('a', { className: 'btn small', href: li.url, target: '_blank', rel: 'noopener' }, (li.label || 'Connect on LinkedIn') + ' ↗')),
+                li.widgetUrl && h('iframe', {
+                    className: 'blog-feed', src: li.widgetUrl, title: 'Recent LinkedIn posts', width: '100%', height: '1000', frameBorder: '0'
+                })
             )
         );
     }
@@ -510,7 +516,7 @@
             return h(React.Fragment, null, h(Nav), h(AppsHeader), h(Apps), h(Contact), h(Footer));
         }
         return h(React.Fragment, null,
-            h(Nav), h(Hero), h(About), h(Timeline), h(Work), h(LinkedIn), h(Contact), h(Footer));
+            h(Nav), h(Hero), h(About), h(Timeline), h(Work), h(Blog), h(Contact), h(Footer));
     }
 
     function loadJSON(path) {
